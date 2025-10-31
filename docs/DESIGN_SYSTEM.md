@@ -1,45 +1,92 @@
 # Design System Documentation
 
-This project implements a semantic color token system, multi-theme architecture, and shadcn/ui component foundation inspired by the portfolio-react architecture.
+This project implements the exact semantic color token system, multi-theme architecture, and shadcn/ui component foundation from the portfolio-react architecture.
 
-## Semantic Color Token System
+## Color System Overview
 
-The design system uses semantic naming conventions for colors, making it easier to maintain consistency and support multiple themes.
+The design system uses HSL color space with opacity modifiers for flexibility. Base colors are defined as HSL values (e.g., `96 4% 24%`) and then composed with opacity to create semantic tokens.
 
-### Token Categories
+### Base Color Variables
 
-#### Text Colors (`tx-*`)
-- `tx-primary` - Main content and headings
-- `tx-secondary` - Supporting information
-- `tx-tertiary` - Subtle hints and labels
-- `tx-disabled` - Inactive elements
-- `tx-inverse` - Inverse text (for dark backgrounds)
+```css
+/* Forest Theme (warm, earthy) */
+--dark-800: 96 4% 24%;    /* Primary dark color */
+--dark-900: 96 4% 16%;    /* Darker variant */
+--dark-950: 96 4% 10%;    /* Darkest variant */
+--light-100: 38 58% 94%;  /* Lightest background */
+--light-150: 38 56% 92%;  /* Card hover state */
+--light-200: 38 50% 90%;  /* Base background */
+--light-300: 38 48% 87%;  /* Pressed state */
+--light-400: 38 50% 80%;  /* Deeper variant */
+--light-600: 36 14% 50%;  /* Mid-tone */
+--light-900: 36 14% 15%;  /* Border base */
+--brand: 101 21% 45%;     /* Brand green */
 
-#### Background Colors (`bg-*`)
-- `bg-base` - Base page background
-- `bg-card` - Card and elevated surface background
-- `bg-hover` - Hover state background
-- `bg-pressed` - Pressed/active state background
-- `bg-disabled` - Disabled element background
-- `bg-inverse` - Inverse background
+/* Opalite Theme (cool, blue) */
+--dark-800: 210 20% 25%;  /* Primary dark color */
+--dark-900: 210 20% 18%;  /* Darker variant */
+--dark-950: 210 20% 12%;  /* Darkest variant */
+--light-100: 210 40% 96%; /* Lightest background */
+--light-200: 210 25% 88%; /* Base background */
+--light-600: 210 25% 55%; /* Mid-tone */
+--light-900: 210 25% 20%; /* Border base */
+--brand: 214 88% 55%;     /* Brand blue */
+```
 
-#### Border Colors (`bd-*`)
-- `bd-primary` - Primary borders
-- `bd-secondary` - Secondary borders
-- `bd-hover` - Hover state borders
-- `bd-pressed` - Pressed state borders
-- `bd-focus` - Focus ring borders
+## Semantic Color Tokens
 
-#### Icon Colors (`ic-*`)
-- `ic-primary` - Primary icons
-- `ic-secondary` - Secondary icons
-- `ic-disabled` - Disabled icons
+### Text Colors (`tx-*`)
 
-#### Semantic Colors
-- `success` - Success states
-- `warning` - Warning states
-- `error` - Error states
-- `info` - Information states
+Colors are composed using HSL with opacity:
+
+- `tx-primary` - `hsl(var(--dark-800))` - Main content and headings (100% opacity)
+- `tx-body` - `hsl(var(--dark-800) / 0.95)` - Body text (95% opacity)
+- `tx-secondary` - `hsl(var(--dark-800) / 0.7)` - Supporting information (70% opacity)
+- `tx-tertiary` - `hsl(var(--dark-800) / 0.5)` - Subtle hints (50% opacity)
+- `tx-disabled` - `hsl(var(--dark-800) / 0.22)` - Inactive elements (22% opacity)
+- `tx-button` - `hsl(var(--light-100))` - Button text
+- `tx-brand` - `hsl(var(--brand) / 0.95)` - Brand-colored text
+
+### Icon Colors (`ic-*`)
+
+- `ic-primary` - `hsl(var(--dark-800) / 0.9)` - Primary icons (90% opacity)
+- `ic-secondary` - `hsl(var(--dark-800) / 0.6)` - Secondary icons (60% opacity)
+- `ic-tertiary` - `hsl(var(--dark-800) / 0.4)` - Tertiary icons (40% opacity)
+- `ic-disabled` - `hsl(var(--dark-800) / 0.15)` - Disabled icons (15% opacity)
+- `ic-button` - `hsl(var(--light-100))` - Icons on buttons
+- `ic-brand` - `hsl(var(--brand) / 0.9)` - Brand-colored icons
+
+### Background Colors (`bg-*`)
+
+- `bg` - `hsl(var(--light-100))` - Default background
+- `bg-base` - `hsl(var(--light-200))` - Base page background
+- `bg-card` - `hsl(var(--light-100))` - Card background
+- `bg-card-hover` - `hsl(var(--light-150))` - Card hover state
+- `bg-card-pressed` - `hsl(var(--light-300))` - Card pressed state
+- `bg-primary` - `hsl(var(--dark-800) / 0.08)` - Primary background (8% opacity)
+- `bg-secondary` - `hsl(var(--dark-800) / 0.03)` - Secondary background (3% opacity)
+- `bg-hover` - `hsl(var(--dark-800) / 0.12)` - Hover state (12% opacity)
+- `bg-pressed` - `hsl(var(--dark-800) / 0.15)` - Pressed state (15% opacity)
+- `bg-disabled` - `hsl(var(--dark-800) / 0.04)` - Disabled state (4% opacity)
+- `bg-brand` - `hsl(var(--brand) / 0.12)` - Brand background
+- `bg-brand-hover` - `hsl(var(--brand) / 0.18)` - Brand hover
+- `bg-brand-pressed` - `hsl(var(--brand) / 0.22)` - Brand pressed
+- `bg-button` - `hsl(var(--dark-800))` - Button background
+- `bg-button-brand` - `hsl(var(--brand))` - Brand button
+
+### Border Colors (`bd-*`)
+
+- `bd` - `hsl(var(--light-900))` - Default border
+- `bd-base` - `hsl(var(--light-900) / 0.8)` - Base border (80% opacity)
+- `bd-card` - `hsl(var(--light-600) / 0.35)` - Card border (35% opacity)
+- `bd-primary` - `hsl(var(--dark-800) / 0.15)` - Primary border (15% opacity)
+- `bd-secondary` - `hsl(var(--dark-800) / 0.08)` - Secondary border (8% opacity)
+- `bd-hover` - `hsl(var(--dark-800) / 0.17)` - Hover border (17% opacity)
+- `bd-pressed` - `hsl(var(--dark-800) / 0.18)` - Pressed border (18% opacity)
+- `bd-disabled` - `hsl(var(--dark-800) / 0.05)` - Disabled border (5% opacity)
+- `bd-brand` - `hsl(var(--brand) / 0.55)` - Brand border
+- `bd-brand-hover` - `hsl(var(--brand) / 0.6)` - Brand hover border
+- `bd-brand-pressed` - `hsl(var(--brand) / 0.63)` - Brand pressed border
 
 ## Using the Tokens
 
@@ -49,41 +96,48 @@ The design system uses semantic naming conventions for colors, making it easier 
 // Text colors
 <p className="text-tx-primary">Primary text</p>
 <p className="text-tx-secondary">Secondary text</p>
+<p className="text-tx-brand">Brand colored text</p>
 
 // Backgrounds
 <div className="bg-bg-card">Card content</div>
-<button className="bg-accent-primary hover:bg-accent-hover">Button</button>
+<button className="bg-bg-button text-tx-button hover:bg-dark">Button</button>
+<div className="bg-brand">Brand background</div>
 
 // Borders
 <div className="border border-bd-primary">Bordered element</div>
+<div className="border border-bd-card">Card border</div>
 
-// Semantic colors
-<div className="text-success">Success message</div>
-<div className="bg-error/10 border border-error">Error state</div>
+// Icons
+<Icon className="text-ic-primary" />
+<Icon className="text-ic-secondary" />
 ```
 
-### In Custom CSS
+### Elevation Utilities
 
-```css
-.custom-element {
-  color: var(--tx-primary);
-  background: var(--bg-card);
-  border: 1px solid var(--bd-primary);
-}
+```tsx
+// From portfolio-react
+<div className="elevation-1">Subtle shadow</div>
+<div className="elevation-big">Large shadow</div>
+<div className="corner-shadow">Corner decoration</div>
 ```
 
 ## Multi-Theme Architecture
 
-The project supports multiple themes using CSS variables and the `data-theme` attribute.
+The project supports two themes from portfolio-react:
 
-### Available Themes
+### 1. Forest Theme (Default)
+- Warm, earthy tones
+- Green brand color (`101 21% 45%`)
+- Beige/tan backgrounds
 
-1. **Light Theme** (default) - Clean, bright interface
-2. **Dark Theme** - Dark mode with adjusted colors
+### 2. Opalite Theme
+- Cool, blue tones
+- Bright blue brand color (`214 88% 55%`)
+- Light blue/gray backgrounds
 
 ### Theme Switching
 
-The theme system uses `next-themes` for automatic theme detection and persistence:
+The theme toggle switches between Forest and Opalite:
 
 ```tsx
 import { ThemeToggle } from "@/src/components/theme-toggle"
@@ -92,7 +146,11 @@ import { ThemeToggle } from "@/src/components/theme-toggle"
 <ThemeToggle />
 ```
 
-### Using Theme in Components
+Icons:
+- 🌲 Trees icon = Switch to Forest theme
+- 💎 Gem icon = Switch to Opalite theme
+
+### Programmatic Theme Access
 
 ```tsx
 "use client"
@@ -103,68 +161,133 @@ export function MyComponent() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      Toggle Theme
-    </button>
+    <div>
+      <p>Current theme: {theme}</p>
+      <button onClick={() => setTheme("forest")}>Forest</button>
+      <button onClick={() => setTheme("opalite")}>Opalite</button>
+    </div>
   )
 }
 ```
 
 ## shadcn/ui Components
 
-The project includes a foundation of shadcn/ui components using the semantic color tokens.
-
-### Available Components
-
-- **Button** - `src/components/ui/button.tsx`
-  - Variants: default, secondary, outline, ghost, link, destructive
-  - Sizes: sm, default, lg, icon
-
-- **Card** - `src/components/ui/card.tsx`
-  - Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter
-
-- **ThemeToggle** - `src/components/theme-toggle.tsx`
-  - Ready-to-use theme switcher with icons
-
-### Component Usage
+### Button Component
 
 ```tsx
 import { Button } from "@/src/components/ui/button"
+
+// Variants using the token system
+<Button variant="default">Default (dark button)</Button>
+<Button variant="brand">Brand colored</Button>
+<Button variant="secondary">Secondary (card bg)</Button>
+<Button variant="outline">Outlined</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link style</Button>
+<Button variant="destructive">Destructive</Button>
+
+// Sizes
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+<Button size="icon">Icon</Button>
+```
+
+### Card Component
+
+```tsx
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card"
 
-export function Example() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card description text</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-tx-secondary">Card content goes here</p>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline">Action</Button>
-      </CardFooter>
-    </Card>
-  )
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Subtitle with tx-secondary</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-tx-secondary">Content</p>
+  </CardContent>
+  <CardFooter>
+    <Button variant="outline">Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Adding a New Theme
+
+To add a third theme (e.g., "midnight"):
+
+1. Add theme colors in `app/globals.css`:
+
+```css
+[data-theme="midnight"] {
+  --dark-800: 240 10% 25%;
+  --dark-900: 240 10% 18%;
+  --dark-950: 240 10% 12%;
+  --light-100: 240 20% 96%;
+  --light-150: 240 15% 94%;
+  --light-200: 240 15% 90%;
+  --light-300: 240 10% 85%;
+  --light-600: 240 10% 50%;
+  --light-900: 240 10% 20%;
+  --brand: 280 70% 60%;  /* Purple brand */
+  --box-clip: rgb(230, 230, 240);
 }
 ```
 
-## Utility Functions
-
-### `cn()` - Class Name Utility
-
-Combines `clsx` and `tailwind-merge` for conditional classes and deduplication:
+2. Update `app/layout.tsx`:
 
 ```tsx
-import { cn } from "@/src/lib/utils"
-
-<div className={cn(
-  "base-classes",
-  isActive && "active-classes",
-  "text-tx-primary"
-)} />
+<ThemeProvider
+  attribute="data-theme"
+  defaultTheme="forest"
+  themes={["forest", "opalite", "midnight"]}
+  enableSystem={false}
+  disableTransitionOnChange={false}
+>
 ```
+
+3. Update `src/components/theme-toggle.tsx` to cycle through all themes.
+
+## Color Token Philosophy
+
+The system uses **opacity-based semantic tokens** which provides:
+
+1. **Consistency**: All colors derive from base HSL values
+2. **Flexibility**: Opacity modifiers create shades without new colors
+3. **Theme-ability**: Changing base colors updates entire theme
+4. **Predictability**: Same opacity = same visual weight across themes
+
+### Example Flow
+
+```
+Base: --dark-800: 96 4% 24%
+↓
+Semantic: --color-tx-secondary: hsl(var(--dark-800) / 0.7)
+↓
+Usage: className="text-tx-secondary"
+↓
+Result: hsl(96 4% 24% / 0.7) = 70% opacity dark text
+```
+
+When theme changes to Opalite:
+```
+Base: --dark-800: 210 20% 25%  (now blue instead of green)
+↓
+Semantic: --color-tx-secondary: hsl(var(--dark-800) / 0.7)  (same)
+↓
+Usage: className="text-tx-secondary"  (same)
+↓
+Result: hsl(210 20% 25% / 0.7) = 70% opacity blue text
+```
+
+## Best Practices
+
+1. **Always use semantic tokens** (`text-tx-primary`) not base colors (`text-dark`)
+2. **Use opacity for variations** rather than creating new color values
+3. **Test in both themes** to ensure proper contrast and readability
+4. **Follow the HSL pattern** when adding new colors (H S% L% format)
+5. **Use the cn() utility** for conditional classes
+6. **Leverage elevation utilities** for depth instead of custom shadows
 
 ## Project Structure
 
@@ -172,48 +295,21 @@ import { cn } from "@/src/lib/utils"
 src/
 ├── components/
 │   ├── ui/                    # shadcn/ui base components
-│   │   ├── button.tsx
-│   │   └── card.tsx
-│   ├── theme-provider.tsx     # Theme context provider
-│   └── theme-toggle.tsx       # Theme switcher component
+│   │   ├── button.tsx         # Using token system
+│   │   └── card.tsx           # Using token system
+│   ├── theme-provider.tsx     # Theme context
+│   └── theme-toggle.tsx       # Forest/Opalite switcher
 └── lib/
-    └── utils.ts               # Utility functions (cn)
+    └── utils.ts               # cn() utility
 
 app/
-├── globals.css                # Theme tokens and base styles
-├── layout.tsx                 # Root layout with ThemeProvider
+├── globals.css                # Color tokens (forest/opalite)
+├── layout.tsx                 # ThemeProvider setup
 └── page.tsx                   # Demo page
 ```
 
-## Adding More Themes
+## Resources
 
-To add a new theme:
-
-1. Add theme styles in `app/globals.css`:
-
-```css
-[data-theme="new-theme"] {
-  --tx-primary: #...;
-  --tx-secondary: #...;
-  /* ... other tokens */
-}
-```
-
-2. Update the ThemeProvider in `app/layout.tsx` if needed.
-
-## Best Practices
-
-1. **Always use semantic tokens** instead of hardcoded colors
-2. **Use the `cn()` utility** for conditional classes
-3. **Test in both themes** to ensure proper contrast
-4. **Extend existing components** rather than creating new ones
-5. **Follow the naming conventions** when adding new tokens
-
-## Adding shadcn/ui Components
-
-To add more shadcn/ui components, you can manually create them following the existing patterns, or refer to the [shadcn/ui documentation](https://ui.shadcn.com/) for component code.
-
-Remember to:
-- Use semantic color tokens (`text-tx-primary`, `bg-bg-card`, etc.)
-- Import the `cn()` utility from `@/src/lib/utils`
-- Use `class-variance-authority` for variants when needed
+- Portfolio React source: `/Users/david/Documents/GitHub/portfolio-react`
+- Tailwind CSS v4: https://tailwindcss.com/docs
+- next-themes: https://github.com/pacocoursey/next-themes

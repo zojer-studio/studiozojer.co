@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/src/components/theme-provider";
+import { FaviconSwitcher } from "@/src/components/favicon-switcher";
 
 const whyte = localFont({
   src: [
@@ -77,6 +78,28 @@ const fraktion = localFont({
 export const metadata: Metadata = {
   title: "Zojer Studio",
   description: "Design studio portfolio",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-light/favicon.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark/favicon.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicon-light/apple-touch-icon.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark/apple-touch-icon.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -90,12 +113,13 @@ export default function RootLayout({
         className={`${whyte.variable} ${whyteInktrap.variable} ${fraktion.variable} antialiased`}
       >
         <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="forest"
-          themes={["forest", "opalite"]}
-          enableSystem={false}
-          disableTransitionOnChange={false}
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          enableColorScheme
+          disableTransitionOnChange
         >
+          <FaviconSwitcher />
           {children}
         </ThemeProvider>
       </body>
