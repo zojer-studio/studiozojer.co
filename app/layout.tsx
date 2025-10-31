@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/src/components/theme-provider";
 import { FaviconSwitcher } from "@/src/components/favicon-switcher";
+import { ThemeDebug } from "@/src/components/theme-debug";
 
 const whyte = localFont({
   src: [
@@ -120,6 +121,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FaviconSwitcher />
+          <ThemeDebug />
           {children}
         </ThemeProvider>
       </body>

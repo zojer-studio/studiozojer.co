@@ -124,7 +124,7 @@ export default function Home() {
           </h3>
           <div className="flex flex-wrap gap-4">
             <Button variant="default">Default</Button>
-            <Button variant="brand">Brand</Button>
+            <Button variant="accent">Accent</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>
@@ -147,7 +147,7 @@ export default function Home() {
             <Card>
               <CardHeader>
                 <CardTitle>Project Alpha</CardTitle>
-                <CardDescription>Brand identity and web design</CardDescription>
+                <CardDescription>Visual identity and web design</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-tx-secondary">

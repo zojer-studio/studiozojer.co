@@ -16,18 +16,25 @@
 
 :root {
   /* ========== LIGHT THEME (DEFAULT) ========== */
-  /* Base color variables in HSL (H S% L%) format */
-  --dark-800: 96 4% 24%;
-  --dark-900: 96 4% 16%;
-  --dark-950: 96 4% 10%;
-  --light-100: 38 58% 94%;
-  --light-150: 38 56% 92%;
-  --light-200: 38 50% 90%;
-  --light-300: 38 48% 87%;
-  --light-400: 38 50% 80%;
-  --light-600: 36 14% 50%;
-  --light-900: 36 14% 15%;
-  --brand: 101 21% 45%;
+  /* Base color variables in HSL (H S% L%) format - From Kairos.swift */
+  --dark-800: 95 4% 24%;      /* #3D403B - main text/icons */
+  --dark-900: 100 3% 15%;     /* #282A27 - darker variant */
+  --dark-950: 30 13% 9%;      /* #1A1714 - darkest */
+  --light-100: 38 49% 89%;    /* #F2E9D9 - base background */
+  --light-150: 36 60% 94%;    /* #F9F2E7 - card background */
+  --light-200: 41 32% 90%;    /* #EEE9DE - menu background */
+  --light-300: 39 29% 84%;    /* #E4DCCD - dark variant bg */
+  --light-400: 39 30% 80%;    /* mid-tone */
+  --light-600: 35 13% 50%;    /* #91836E - border color */
+  --light-900: 32 14% 15%;    /* #2C2721 - dark borders */
+  --accent: 230 100% 54%;     /* #173DFF - accent color */
+
+  /* Semantic state colors */
+  --color-error-light: 5 75% 55%;     /* #E34837 */
+  --color-error-dark: 0 100% 64%;     /* #FF4B4B */
+  --color-warning-light: 33 90% 60%;  /* #F5A441 */
+  --color-warning-dark: 32 90% 68%;   /* #F7B667 */
+  --color-success: 101 20% 45%;       /* #6A8B5B - same both modes */
 
   /* Theme fonts */
   --font-sans-theme: var(--font-whyte);
@@ -41,21 +48,45 @@
   --box-clip: rgb(242, 233, 217);
 }
 
-/* ========== DARK THEME ========== */
-.dark {
-  --dark-800: 210 20% 25%;
-  --dark-900: 210 20% 18%;
-  --dark-950: 210 20% 12%;
-  --light-100: 210 40% 96%;
-  --light-150: 210 35% 94%;
-  --light-200: 210 25% 88%;
-  --light-300: 210 20% 82%;
-  --light-400: 210 20% 75%;
-  --light-600: 210 25% 55%;
-  --light-900: 210 25% 20%;
-  --brand: 214 88% 55%;
+/* ========== LIGHT THEME ========== */
+.light {
+  --dark-800: 95 4% 24%;      /* #3D403B - main text/icons */
+  --dark-900: 100 3% 15%;     /* #282A27 - darker variant */
+  --dark-950: 30 13% 9%;      /* #1A1714 - darkest */
+  --light-100: 38 49% 89%;    /* #F2E9D9 - base background */
+  --light-150: 36 60% 94%;    /* #F9F2E7 - card background */
+  --light-200: 41 32% 90%;    /* #EEE9DE - menu background */
+  --light-300: 39 29% 84%;    /* #E4DCCD - dark variant bg */
+  --light-400: 39 30% 80%;    /* mid-tone */
+  --light-600: 35 13% 50%;    /* #91836E - border color */
+  --light-900: 32 14% 15%;    /* #2C2721 - dark borders */
+  --accent: 230 100% 54%;     /* #173DFF - accent color */
 
   --box-clip: rgb(242, 233, 217);
+}
+
+/* ========== DARK THEME ========== */
+.dark {
+  /* In dark mode, swap the semantic meaning: */
+  /* --dark-* becomes light/text colors */
+  /* --light-* becomes dark/background colors */
+  --dark-800: 203 26% 96%;    /* #F3F6F8 - body text/icons (was light-150) */
+  --dark-900: 180 100% 99%;   /* #FEFFFF - primary text (was light-100) */
+  --dark-950: 180 100% 99%;   /* #FEFFFF - brightest text */
+  --light-100: 30 13% 9%;     /* #1A1714 - base background */
+  --light-150: 32 14% 15%;    /* #2C2721 - card backgrounds */
+  --light-200: 30 13% 9%;     /* #1A1714 - menu background */
+  --light-300: 32 14% 15%;    /* #2C2721 - lighter bg variant */
+  --light-400: 36 14% 18%;    /* slightly lighter */
+  --light-600: 38 50% 80%;    /* #E6D3B2 - borders (stays same) */
+  --light-900: 38 50% 80%;    /* #E6D3B2 - light borders */
+  --accent: 216 100% 59%;     /* #3281FF - accent dark */
+
+  /* Semantic state colors - dark mode variants */
+  --color-error-light: 0 100% 64%;    /* #FF4B4B */
+  --color-warning-light: 32 90% 68%;  /* #F7B667 */
+
+  --box-clip: rgb(26, 23, 20);
 }
 
 /* ========== TAILWIND THEME INTEGRATION ========== */
@@ -64,12 +95,15 @@
   --color-tx-DEFAULT: hsl(var(--dark-800));
   --color-tx-body: hsl(var(--dark-800) / 0.95);
   --color-tx-primary: hsl(var(--dark-800));
-  --color-tx-secondary: hsl(var(--dark-800) / 0.7);
+  --color-tx-secondary: hsl(var(--dark-800) / 0.75);
   --color-tx-tertiary: hsl(var(--dark-800) / 0.5);
   --color-tx-disabled: hsl(var(--dark-800) / 0.22);
   --color-tx-button: hsl(var(--light-100));
-  --color-tx-brand-DEFAULT: hsl(var(--brand) / 0.95);
-  --color-tx-brand-disabled: hsl(var(--brand) / 0.35);
+  --color-tx-accent-DEFAULT: hsl(var(--accent) / 0.95);
+  --color-tx-accent-disabled: hsl(var(--accent) / 0.35);
+  --color-tx-error: hsl(var(--color-error-light) / 0.95);
+  --color-tx-warning: hsl(var(--color-warning-light) / 0.95);
+  --color-tx-success: hsl(var(--color-success) / 0.95);
 
   /* Icon colors */
   --color-ic-DEFAULT: hsl(var(--dark-800));
@@ -78,29 +112,39 @@
   --color-ic-tertiary: hsl(var(--dark-800) / 0.4);
   --color-ic-disabled: hsl(var(--dark-800) / 0.15);
   --color-ic-button: hsl(var(--light-100));
-  --color-ic-brand-DEFAULT: hsl(var(--brand) / 0.9);
-  --color-ic-brand-disabled: hsl(var(--brand) / 0.5);
+  --color-ic-accent-DEFAULT: hsl(var(--accent) / 0.9);
+  --color-ic-accent-disabled: hsl(var(--accent) / 0.5);
+  --color-ic-error: hsl(var(--color-error-light) / 0.9);
+  --color-ic-warning: hsl(var(--color-warning-light) / 0.9);
+  --color-ic-success: hsl(var(--color-success) / 0.9);
 
   /* Background colors */
   --color-bg-DEFAULT: hsl(var(--light-100));
-  --color-bg-base: hsl(var(--light-200));
-  --color-bg-card-DEFAULT: hsl(var(--light-100));
-  --color-bg-card-hover: hsl(var(--light-150));
+  --color-bg-base: hsl(var(--light-100));
+  --color-bg-card: hsl(var(--light-150));
+  --color-bg-card-DEFAULT: hsl(var(--light-150));
+  --color-bg-card-hover: hsl(var(--light-200));
   --color-bg-card-pressed: hsl(var(--light-300));
+  --color-bg-dark: hsl(var(--light-300));
+  --color-bg-menu: hsl(var(--light-200));
   --color-bg-primary: hsl(var(--dark-800) / 0.08);
   --color-bg-secondary: hsl(var(--dark-800) / 0.03);
   --color-bg-hover: hsl(var(--dark-800) / 0.12);
   --color-bg-pressed: hsl(var(--dark-800) / 0.15);
   --color-bg-disabled: hsl(var(--dark-800) / 0.04);
-  --color-bg-brand-DEFAULT: hsl(var(--brand) / 0.12);
-  --color-bg-brand-hover: hsl(var(--brand) / 0.18);
-  --color-bg-brand-pressed: hsl(var(--brand) / 0.22);
-  --color-bg-brand-disabled: hsl(var(--brand) / 0.06);
+  --color-bg-accent-DEFAULT: hsl(var(--accent) / 0.08);
+  --color-bg-accent-opaque: hsl(var(--accent));
+  --color-bg-accent-hover: hsl(var(--accent) / 0.12);
+  --color-bg-accent-pressed: hsl(var(--accent) / 0.15);
+  --color-bg-accent-disabled: hsl(var(--accent) / 0.04);
   --color-bg-button-DEFAULT: hsl(var(--dark-800));
-  --color-bg-button-hover: hsl(var(--dark-900) / 0.18);
-  --color-bg-button-pressed: hsl(var(--dark-950) / 0.22);
-  --color-bg-button-disabled: hsl(var(--brand) / 0.15);
-  --color-bg-button-brand: hsl(var(--brand));
+  --color-bg-button-hover: hsl(var(--dark-900));
+  --color-bg-button-pressed: hsl(var(--dark-950));
+  --color-bg-button-disabled: hsl(var(--dark-800) / 0.5);
+  --color-bg-button-accent: hsl(var(--accent));
+  --color-bg-error: hsl(var(--color-error-light) / 0.08);
+  --color-bg-warning: hsl(var(--color-warning-light) / 0.08);
+  --color-bg-success: hsl(var(--color-success) / 0.08);
 
   /* Border colors */
   --color-bd-DEFAULT: hsl(var(--light-900));
@@ -111,15 +155,18 @@
   --color-bd-hover: hsl(var(--dark-800) / 0.17);
   --color-bd-pressed: hsl(var(--dark-800) / 0.18);
   --color-bd-disabled: hsl(var(--dark-800) / 0.05);
-  --color-bd-brand-DEFAULT: hsl(var(--brand) / 0.55);
-  --color-bd-brand-hover: hsl(var(--brand) / 0.6);
-  --color-bd-brand-pressed: hsl(var(--brand) / 0.63);
-  --color-bd-brand-disabled: hsl(var(--brand) / 0.15);
+  --color-bd-accent-DEFAULT: hsl(var(--accent) / 0.35);
+  --color-bd-accent-hover: hsl(var(--accent) / 0.45);
+  --color-bd-accent-pressed: hsl(var(--accent) / 0.5);
+  --color-bd-accent-disabled: hsl(var(--accent) / 0.15);
+  --color-bd-error: hsl(var(--color-error-light) / 0.35);
+  --color-bd-warning: hsl(var(--color-warning-light) / 0.35);
+  --color-bd-success: hsl(var(--color-success) / 0.35);
 
   /* Additional colors */
   --color-light: hsl(var(--light-100));
   --color-dark: hsl(var(--dark-800));
-  --color-brand: hsl(var(--brand));
+  --color-accent: hsl(var(--accent));
 
   /* Fonts */
   --font-sans: var(--font-whyte);
@@ -149,10 +196,10 @@
   --fontSize-btn-lg: 1rem;
   --lineHeight-btn-lg: 1.5rem;
 
-  /* Semantic colors */
-  --color-success: #16a34a;
-  --color-warning: #ea580c;
-  --color-error: #dc2626;
+  /* Semantic colors - using Kairos tokens */
+  --color-error: hsl(var(--color-error-light));
+  --color-warning: hsl(var(--color-warning-light));
+  --color-success: hsl(var(--color-success));
   --color-info: #0284c7;
 
   /* Font size utilities mapped to Tailwind */
