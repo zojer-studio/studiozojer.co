@@ -1,26 +1,261 @@
 @import "tailwindcss";
 
+/* ============================================
+   SEMANTIC COLOR TOKEN SYSTEM
+   ============================================
+   From portfolio-react architecture
+
+   Token categories:
+   - tx-* : Text colors
+   - bg-* : Background colors
+   - bd-* : Border colors
+   - ic-* : Icon colors
+
+   Uses HSL color space with opacity modifiers
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ========== FOREST THEME (DEFAULT) ========== */
+  /* Base color variables in HSL (H S% L%) format */
+  --dark-800: 96 4% 24%;
+  --dark-900: 96 4% 16%;
+  --dark-950: 96 4% 10%;
+  --light-100: 38 58% 94%;
+  --light-150: 38 56% 92%;
+  --light-200: 38 50% 90%;
+  --light-300: 38 48% 87%;
+  --light-400: 38 50% 80%;
+  --light-600: 36 14% 50%;
+  --light-900: 36 14% 15%;
+  --brand: 101 21% 45%;
+
+  /* Theme fonts */
+  --font-sans-theme: var(--font-whyte);
+  --font-display-theme: var(--font-whyte-inktrap);
+  --font-mono-theme: var(--font-fraktion);
+
+  --radius: 0.5rem;
+
+  /* Card upper corner shadow */
+  --box-shadow-04: rgba(0, 0, 0, 0.04);
+  --box-clip: rgb(242, 233, 217);
 }
 
+/* ========== FOREST THEME ========== */
+[data-theme="forest"] {
+  --dark-800: 96 4% 24%;
+  --dark-900: 96 4% 16%;
+  --dark-950: 96 4% 10%;
+  --light-100: 38 58% 94%;
+  --light-150: 38 56% 92%;
+  --light-200: 38 50% 90%;
+  --light-300: 38 48% 87%;
+  --light-400: 38 50% 80%;
+  --light-600: 36 14% 50%;
+  --light-900: 36 14% 15%;
+  --brand: 101 21% 45%;
+
+  --box-clip: rgb(242, 233, 217);
+}
+
+/* ========== OPALITE THEME ========== */
+[data-theme="opalite"] {
+  --dark-800: 210 20% 25%;
+  --dark-900: 210 20% 18%;
+  --dark-950: 210 20% 12%;
+  --light-100: 210 40% 96%;
+  --light-150: 210 35% 94%;
+  --light-200: 210 25% 88%;
+  --light-300: 210 20% 82%;
+  --light-400: 210 20% 75%;
+  --light-600: 210 25% 55%;
+  --light-900: 210 25% 20%;
+  --brand: 214 88% 55%;
+
+  --box-clip: rgb(242, 233, 217);
+}
+
+/* ========== TAILWIND THEME INTEGRATION ========== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Text colors */
+  --color-tx-DEFAULT: hsl(var(--dark-800));
+  --color-tx-body: hsl(var(--dark-800) / 0.95);
+  --color-tx-primary: hsl(var(--dark-800));
+  --color-tx-secondary: hsl(var(--dark-800) / 0.7);
+  --color-tx-tertiary: hsl(var(--dark-800) / 0.5);
+  --color-tx-disabled: hsl(var(--dark-800) / 0.22);
+  --color-tx-button: hsl(var(--light-100));
+  --color-tx-brand-DEFAULT: hsl(var(--brand) / 0.95);
+  --color-tx-brand-disabled: hsl(var(--brand) / 0.35);
+
+  /* Icon colors */
+  --color-ic-DEFAULT: hsl(var(--dark-800));
+  --color-ic-primary: hsl(var(--dark-800) / 0.9);
+  --color-ic-secondary: hsl(var(--dark-800) / 0.6);
+  --color-ic-tertiary: hsl(var(--dark-800) / 0.4);
+  --color-ic-disabled: hsl(var(--dark-800) / 0.15);
+  --color-ic-button: hsl(var(--light-100));
+  --color-ic-brand-DEFAULT: hsl(var(--brand) / 0.9);
+  --color-ic-brand-disabled: hsl(var(--brand) / 0.5);
+
+  /* Background colors */
+  --color-bg-DEFAULT: hsl(var(--light-100));
+  --color-bg-base: hsl(var(--light-200));
+  --color-bg-card-DEFAULT: hsl(var(--light-100));
+  --color-bg-card-hover: hsl(var(--light-150));
+  --color-bg-card-pressed: hsl(var(--light-300));
+  --color-bg-primary: hsl(var(--dark-800) / 0.08);
+  --color-bg-secondary: hsl(var(--dark-800) / 0.03);
+  --color-bg-hover: hsl(var(--dark-800) / 0.12);
+  --color-bg-pressed: hsl(var(--dark-800) / 0.15);
+  --color-bg-disabled: hsl(var(--dark-800) / 0.04);
+  --color-bg-brand-DEFAULT: hsl(var(--brand) / 0.12);
+  --color-bg-brand-hover: hsl(var(--brand) / 0.18);
+  --color-bg-brand-pressed: hsl(var(--brand) / 0.22);
+  --color-bg-brand-disabled: hsl(var(--brand) / 0.06);
+  --color-bg-button-DEFAULT: hsl(var(--dark-800));
+  --color-bg-button-hover: hsl(var(--dark-900) / 0.18);
+  --color-bg-button-pressed: hsl(var(--dark-950) / 0.22);
+  --color-bg-button-disabled: hsl(var(--brand) / 0.15);
+  --color-bg-button-brand: hsl(var(--brand));
+
+  /* Border colors */
+  --color-bd-DEFAULT: hsl(var(--light-900));
+  --color-bd-base: hsl(var(--light-900) / 0.8);
+  --color-bd-card: hsl(var(--light-600) / 0.35);
+  --color-bd-primary: hsl(var(--dark-800) / 0.15);
+  --color-bd-secondary: hsl(var(--dark-800) / 0.08);
+  --color-bd-hover: hsl(var(--dark-800) / 0.17);
+  --color-bd-pressed: hsl(var(--dark-800) / 0.18);
+  --color-bd-disabled: hsl(var(--dark-800) / 0.05);
+  --color-bd-brand-DEFAULT: hsl(var(--brand) / 0.55);
+  --color-bd-brand-hover: hsl(var(--brand) / 0.6);
+  --color-bd-brand-pressed: hsl(var(--brand) / 0.63);
+  --color-bd-brand-disabled: hsl(var(--brand) / 0.15);
+
+  /* Additional colors */
+  --color-light: hsl(var(--light-100));
+  --color-dark: hsl(var(--dark-800));
+  --color-brand: hsl(var(--brand));
+
+  /* Fonts */
+  --font-sans: var(--font-whyte);
+  --font-display: var(--font-whyte-inktrap);
+  --font-mono: var(--font-fraktion);
+
+  /* Typography Scale (from portfolio-react) */
+  --fontSize-xs: 0.813rem;
+  --lineHeight-xs: 1rem;
+  --fontSize-sm: 1rem;
+  --lineHeight-sm: 1.5rem;
+  --fontSize-md: 1.25rem;
+  --lineHeight-md: 2rem;
+  --fontSize-lg: 1.625rem;
+  --lineHeight-lg: 2.625rem;
+  --fontSize-xl: 2.063rem;
+  --lineHeight-xl: 3.25rem;
+  --letterSpacing: 0.02rem;
+
+  /* Button Typography */
+  --fontSize-btn-xs: 0.688rem;
+  --lineHeight-btn-xs: 1rem;
+  --fontSize-btn-sm: 0.813rem;
+  --lineHeight-btn-sm: 1.25rem;
+  --fontSize-btn-md: 0.938rem;
+  --lineHeight-btn-md: 1.5rem;
+  --fontSize-btn-lg: 1rem;
+  --lineHeight-btn-lg: 1.5rem;
+
+  /* Semantic colors */
+  --color-success: #16a34a;
+  --color-warning: #ea580c;
+  --color-error: #dc2626;
+  --color-info: #0284c7;
+
+  /* Font size utilities mapped to Tailwind */
+  --text-xs: var(--fontSize-xs);
+  --text-sm: var(--fontSize-sm);
+  --text-base: var(--fontSize-sm);
+  --text-md: var(--fontSize-md);
+  --text-lg: var(--fontSize-lg);
+  --text-xl: var(--fontSize-xl);
+  --text-2xl: 2.5rem;
+  --text-3xl: 3rem;
+  --text-4xl: 3.5rem;
+  --text-5xl: 4rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ========== BASE STYLES ========== */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  background: hsl(var(--light-200));
+  color: hsl(var(--dark-800));
+  font-family: var(--font-whyte), system-ui, sans-serif;
+  letter-spacing: var(--letterSpacing);
+}
+
+/* Smooth theme transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Utility classes from portfolio-react */
+.elevation-1 {
+  box-shadow: 0px 0px 4px -2px rgba(24, 39, 75, 0.08), 0px 0px 4px -2px rgba(24, 39, 75, 0.12);
+}
+
+.elevation-big {
+  box-shadow: 27px 34px 55px 0px rgba(0, 0, 0, 0.15);
+}
+
+.corner-shadow {
+  box-shadow: 0 0 12px 0 var(--box-shadow-04), 0 0 0 48px var(--box-clip);
+}
+
+/* Typography utilities */
+.font-sans {
+  font-family: var(--font-whyte), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-whyte-inktrap), var(--font-whyte), system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-fraktion), monospace;
+}
+
+/* Custom typography classes matching portfolio-react */
+.text-xs-custom {
+  font-size: var(--fontSize-xs);
+  line-height: var(--lineHeight-xs);
+  letter-spacing: var(--letterSpacing);
+}
+
+.text-sm-custom {
+  font-size: var(--fontSize-sm);
+  line-height: var(--lineHeight-sm);
+  letter-spacing: var(--letterSpacing);
+}
+
+.text-md-custom {
+  font-size: var(--fontSize-md);
+  line-height: var(--lineHeight-md);
+  letter-spacing: var(--letterSpacing);
+}
+
+.text-lg-custom {
+  font-size: var(--fontSize-lg);
+  line-height: var(--lineHeight-lg);
+  letter-spacing: var(--letterSpacing);
+}
+
+.text-xl-custom {
+  font-size: var(--fontSize-xl);
+  line-height: var(--lineHeight-xl);
+  letter-spacing: var(--letterSpacing);
 }
