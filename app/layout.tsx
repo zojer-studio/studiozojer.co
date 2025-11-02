@@ -121,7 +121,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FaviconSwitcher />
-          <ThemeDebug />
+          {/* <ThemeDebug /> */}
           {children}
         </ThemeProvider>
       </body>
