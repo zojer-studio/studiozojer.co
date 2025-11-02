@@ -4,10 +4,17 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
-      <main className="max-w-2xl text-center space-y-8">
-        <h1 className="text-6xl font-display text-tx-primary">
-          Zojer Studio
-        </h1>
+      <main className="max-w-2xl text-center space-y-8 my-24">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-6xl font-display text-tx-primary">
+            Kairōs
+          </h1>
+          <h3>
+            by Zojer Studio
+          </h3>
+          <p>(sorry this site is in progress lol)</p>
+
+        </div>
         
         <div className="flex justify-center">
           <Image
@@ -29,8 +36,7 @@ export default function Home() {
           View Design System
         </Link> */}
 
-        <h3>(Kairōs version 1.0.0)</h3>
-        
+        <div className="ml-embedded" data-form="woEybi"></div>
       </main>
     </div>
   );
