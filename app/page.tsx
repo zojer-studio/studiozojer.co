@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { NewsletterForm } from "@/src/components/newsletter-form";
 
 export default function Home() {
   return (
@@ -12,10 +12,10 @@ export default function Home() {
           <h3>
             by Zojer Studio
           </h3>
-          <p>(sorry this site is in progress lol)</p>
+          <p className="text-tx-secondary">Available now for iOS. Might port to Desktop + Android, if there's enough interest.</p>
 
         </div>
-        
+
         <div className="flex justify-center">
           <Image
             src="/images/promo1.png"
@@ -25,7 +25,7 @@ export default function Home() {
             className="rounded-lg shadow-lg"
           />
         </div>
-        
+
         {/* <p className="text-xl text-tx-secondary">
           Design studio portfolio — Coming soon
         </p> */}
@@ -36,7 +36,7 @@ export default function Home() {
           View Design System
         </Link> */}
 
-        <div className="ml-embedded" data-form="woEybi"></div>
+        <NewsletterForm className="max-w-md mx-auto" />
       </main>
     </div>
   );
