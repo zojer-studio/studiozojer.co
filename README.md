@@ -29,6 +29,34 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## MDX Blog
+
+This project supports MDX blog posts stored in `/content/blog/`. Posts use frontmatter for metadata:
+
+```yaml
+---
+title: "Post Title"
+description: "Brief description"
+date: "2024-01-15"
+tags: ["design", "development"]
+published: true
+---
+```
+
+### Turbopack Note
+
+Next.js 16 uses Turbopack by default, which doesn't support non-serializable remark/rehype plugins (syntax highlighting, GFM tables, etc.). For full MDX plugin support:
+
+```bash
+# Development with full plugin support
+npm run dev -- --webpack
+
+# Production build with full plugin support
+npm run build -- --webpack
+```
+
+Basic MDX rendering works with Turbopack; only advanced features require the `--webpack` flag.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

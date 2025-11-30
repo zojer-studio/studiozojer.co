@@ -289,3 +289,60 @@ body {
   line-height: var(--lineHeight-xl);
   letter-spacing: var(--letterSpacing);
 }
+
+/* ========== MDX/PROSE STYLES ========== */
+/* Code block styling for rehype-pretty-code */
+[data-rehype-pretty-code-figure] {
+  margin: 1rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--dark-800) / 0.15);
+  background: hsl(var(--light-150)) !important;
+  overflow-x: auto;
+}
+
+[data-rehype-pretty-code-figure] code {
+  background: transparent !important;
+  font-family: var(--font-fraktion), monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Inline code (not in pre blocks) */
+:not(pre) > code {
+  background: hsl(var(--dark-800) / 0.08);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-fraktion), monospace;
+  font-size: 0.875em;
+}
+
+/* Code block line highlighting */
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background: hsl(var(--accent) / 0.1);
+  border-left: 2px solid hsl(var(--accent));
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 2px);
+  padding-right: 1rem;
+}
+
+/* Code block title */
+[data-rehype-pretty-code-title] {
+  font-family: var(--font-fraktion), monospace;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--dark-800) / 0.08);
+  border: 1px solid hsl(var(--dark-800) / 0.15);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: hsl(var(--dark-800) / 0.75);
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
