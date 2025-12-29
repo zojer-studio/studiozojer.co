@@ -37,19 +37,22 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
     setErrorMessage("")
 
     try {
-      const formData = new FormData()
-      formData.append("fields[email]", email)
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
 
-      await fetch(
-        "https://assets.mailerlite.com/jsonp/1887971/forms/woEybi/subscribe",
-        {
-          method: "POST",
-          body: formData,
-          mode: "no-cors",
-        }
-      )
+      const data = await response.json()
 
-      // With no-cors, we can't read the response, so assume success
+      if (!response.ok) {
+        setStatus("error")
+        setErrorMessage(data.error || "Something went wrong. Please try again.")
+        return
+      }
+
       setStatus("success")
       setEmail("")
     } catch {
