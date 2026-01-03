@@ -10,7 +10,7 @@ export default function Home() {
             Kairōs
           </h1>
           <h3>
-            by Zojer Studio
+            by <a href="https://www.threads.com/@zojer.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-tx-primary transition-colors">Zojer Studio</a>
           </h3>
           <p className="text-tx-secondary">Available now for iOS. Might port to Desktop + Android, if there's enough interest.</p>
 
