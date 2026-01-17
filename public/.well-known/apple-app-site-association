@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "497QWRKRQH.studio.zojer.kairos-swift",
+        "paths": ["/auth/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["497QWRKRQH.studio.zojer.kairos-swift"]
+  }
+}
