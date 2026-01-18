@@ -71,6 +71,18 @@ export default function PrivacyPolicy() {
                   which you control.
                 </p>
               </div>
+
+              <div>
+                <h3 className="font-semibold text-tx-primary">Feedback</h3>
+                <p className="text-tx-secondary">
+                  When you submit feedback through the app, we collect your feedback message
+                  and selected category. Optionally, you may provide contact information
+                  (email, phone, or social handle) and a vibe rating. We also automatically
+                  capture device information: app version, iOS version, device model, and
+                  submission time. Feedback data is stored in Airtable (US-based). We use
+                  this to improve the app and may contact you if you provided contact details.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -110,9 +122,13 @@ export default function PrivacyPolicy() {
                     <td className="py-2 pr-4">Charts & preferences</td>
                     <td className="py-2">Apple CloudKit</td>
                   </tr>
-                  <tr>
+                  <tr className="border-b border-bd-secondary">
                     <td className="py-2 pr-4">Backup files</td>
                     <td className="py-2">Your iCloud Drive</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4">Feedback</td>
+                    <td className="py-2">Airtable (US-based)</td>
                   </tr>
                 </tbody>
               </table>
@@ -150,6 +166,17 @@ export default function PrivacyPolicy() {
                   Their privacy policy
                 </a>
               </li>
+              <li>
+                <strong>Airtable</strong> &ndash; Feedback storage.{" "}
+                <a
+                  href="https://www.airtable.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-tx-primary transition-colors"
+                >
+                  Their privacy policy
+                </a>
+              </li>
             </ul>
           </section>
 
@@ -159,7 +186,7 @@ export default function PrivacyPolicy() {
               Data Security
             </h2>
             <p className="text-tx-secondary">
-              Your data is protected by Supabase&apos;s and Apple&apos;s security infrastructure.
+              Your data is protected by Supabase&apos;s, Apple&apos;s, and Airtable&apos;s security infrastructure.
               All data is transmitted over encrypted connections (HTTPS).
             </p>
           </section>
