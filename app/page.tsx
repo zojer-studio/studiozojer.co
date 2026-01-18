@@ -37,6 +37,17 @@ export default function Home() {
         </Link> */}
 
         <NewsletterForm className="max-w-md mx-auto" />
+
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm flex gap-4 justify-center">
+          <a href="/terms" className="hover:text-tx-primary transition-colors">
+            Terms
+          </a>
+          <span>&middot;</span>
+          <a href="/privacy" className="hover:text-tx-primary transition-colors">
+            Privacy
+          </a>
+        </footer>
       </main>
     </div>
   );
