@@ -251,9 +251,12 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm">
+        <div className="mt-16 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm flex gap-4">
           <Link href="/terms" className="hover:text-tx-primary transition-colors">
             Terms of Service
+          </Link>
+          <Link href="/support" className="hover:text-tx-primary transition-colors">
+            Support
           </Link>
         </div>
       </main>

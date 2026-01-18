@@ -47,6 +47,10 @@ export default function Home() {
           <a href="/privacy" className="hover:text-tx-primary transition-colors">
             Privacy
           </a>
+          <span>&middot;</span>
+          <a href="/support" className="hover:text-tx-primary transition-colors">
+            Support
+          </a>
         </footer>
       </main>
     </div>
