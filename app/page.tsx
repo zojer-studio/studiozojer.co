@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { NewsletterForm } from "@/src/components/newsletter-form";
+import { FeatureCarousel } from "@/src/components/feature-carousel";
 
 export default function Home() {
   return (
@@ -12,29 +12,11 @@ export default function Home() {
           <h3>
             by <a href="https://www.threads.com/@zojer.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-tx-primary transition-colors">Zojer Studio</a>
           </h3>
-          <p className="text-tx-secondary">Available now for iOS. Might port to Desktop + Android, if there's enough interest.</p>
+          <p className="text-tx-secondary">Beta available now on iOS Testflight.</p>
 
         </div>
 
-        <div className="flex justify-center">
-          <Image
-            src="/images/promo1.png"
-            alt="Zojer Studio promotional image"
-            width={600}
-            height={400}
-            className="rounded-lg shadow-lg"
-          />
-        </div>
-
-        {/* <p className="text-xl text-tx-secondary">
-          Design studio portfolio — Coming soon
-        </p> */}
-        {/* <Link
-          href="/design-system"
-          className="inline-block px-6 py-3 bg-bg-button text-tx-button rounded-lg hover:bg-dark transition-colors"
-        >
-          View Design System
-        </Link> */}
+        <FeatureCarousel className="max-w-md mx-auto" />
 
         <NewsletterForm className="max-w-md mx-auto" />
 
