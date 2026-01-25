@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
           Privacy Policy
         </h1>
         <p className="text-tx-secondary mb-12">
-          Last updated: January 18, 2026
+          Last updated: January 25, 2026
         </p>
 
         <div className="space-y-10 text-tx-body">
@@ -84,6 +84,22 @@ export default function PrivacyPolicy() {
                 </p>
               </div>
             </div>
+          </section>
+
+          {/* Photo Library Access */}
+          <section>
+            <h2 className="text-xl font-display text-tx-primary mb-4">
+              Photo Library Access
+            </h2>
+            <p className="mb-4">
+              You can save chart screenshots to your photo library by tapping &ldquo;Save to Photos.&rdquo;
+              This is optional and only happens when you initiate it.
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-tx-secondary">
+              <li>We only <strong>add</strong> screenshots to your library &ndash; we never read or access your existing photos</li>
+              <li>Screenshots are saved to a &ldquo;Kairōs&rdquo; album</li>
+              <li>No photos are uploaded or transmitted anywhere &ndash; they stay on your device</li>
+            </ul>
           </section>
 
           {/* What We Don't Collect */}
