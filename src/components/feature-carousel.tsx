@@ -84,17 +84,26 @@ export function FeatureCarousel({ className }: { className?: string }) {
           </svg>
         </button>
 
-        {/* Content */}
-        <div className="relative aspect-video overflow-hidden rounded-lg border border-bd-primary w-full">
-          <Image
-            src={imageSrc}
-            alt={current.alt}
-            fill
-            sizes="(max-width: 768px) 100vw, 768px"
-            quality={95}
-            className="object-cover"
-            priority={currentIndex === 0}
-          />
+        {/* Content - render all images, show only current */}
+        <div className="relative aspect-video overflow-hidden rounded-lg border border-bd-secondary w-full">
+          {slides.map((slide, index) => {
+            const src = mounted ? (isDark ? slide.darkImage : slide.lightImage) : slide.lightImage;
+            return (
+              <Image
+                key={slide.alt}
+                src={src}
+                alt={slide.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                quality={95}
+                className={cn(
+                  "object-cover transition-opacity duration-300",
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                )}
+                priority
+              />
+            );
+          })}
         </div>
       </div>
 
