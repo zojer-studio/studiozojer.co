@@ -3,25 +3,26 @@ import { FeatureCarousel } from "@/src/components/feature-carousel";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <main className="max-w-2xl text-center space-y-8 my-24">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-6xl font-display text-tx-primary">
-            Kairōs
-          </h1>
-          <h3>
-            by <a href="https://www.threads.com/@zojer.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-tx-primary transition-colors">Zojer Studio</a>
-          </h3>
-          <p className="text-tx-secondary">Beta available now on iOS Testflight.</p>
+    <div className="min-h-screen grid grid-cols-[1fr_min(28rem,calc(100%-4rem))_1fr] gap-y-8 py-24 content-center">
+      {/* Title section */}
+      <div className="col-start-2 flex flex-col gap-2 text-center">
+        <h1 className="text-6xl font-display text-tx-primary">
+          Kairōs
+        </h1>
+        <h3>
+          by <a href="https://www.threads.com/@zojer.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-tx-primary transition-colors">Zojer Studio</a>
+        </h3>
+        <p className="text-tx-secondary">Beta available now on iOS Testflight.</p>
+      </div>
 
-        </div>
+      {/* Carousel - full bleed */}
+      <FeatureCarousel className="col-span-full max-w-3xl mx-auto w-full px-8" />
 
-        <FeatureCarousel className="max-w-md mx-auto" />
+      {/* Newsletter */}
+      <NewsletterForm className="col-start-2" />
 
-        <NewsletterForm className="max-w-md mx-auto" />
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm flex gap-4 justify-center">
+      {/* Footer */}
+      <footer className="col-start-2 mt-8 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm flex gap-4 justify-center">
           <a href="/terms" className="hover:text-tx-primary transition-colors">
             Terms
           </a>
@@ -34,7 +35,6 @@ export default function Home() {
             Support
           </a>
         </footer>
-      </main>
     </div>
   );
 }

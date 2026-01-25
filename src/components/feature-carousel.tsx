@@ -85,12 +85,13 @@ export function FeatureCarousel({ className }: { className?: string }) {
         </button>
 
         {/* Content */}
-        <div className="relative aspect-video overflow-hidden rounded-lg w-full">
+        <div className="relative aspect-video overflow-hidden rounded-lg border border-bd-primary w-full">
           <Image
             src={imageSrc}
             alt={current.alt}
             fill
-            sizes="(max-width: 448px) 100vw, 448px"
+            sizes="(max-width: 768px) 100vw, 768px"
+            quality={95}
             className="object-cover"
             priority={currentIndex === 0}
           />
