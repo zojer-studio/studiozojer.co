@@ -178,7 +178,7 @@ export default function TermsOfService() {
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>You may delete your account at any time</li>
               <li>We may terminate accounts that violate these terms</li>
-              <li>Upon termination, your right to use the app ends</li>
+              <li>Upon termination, you retain the right to use the app and Apple&apos;s cloud services, but your access to Zojer Studio&apos;s online and social features ends</li>
             </ul>
           </section>
 
