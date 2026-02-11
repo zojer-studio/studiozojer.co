@@ -78,11 +78,11 @@ const fraktion = localFont({
 
 export const metadata: Metadata = {
   title: "Zojer Studio",
-  description: "Design studio portfolio",
+  description: "Zojer Studio creates beautifully crafted astrology tooling.",
   metadataBase: new URL("https://zojer.studio"),
   openGraph: {
     title: "Zojer Studio",
-    description: "Design studio portfolio",
+    description: "Zojer Studio creates beautifully crafted astrology tooling.",
     images: [
       {
         url: "/images/kairos-opengraph.jpg",
