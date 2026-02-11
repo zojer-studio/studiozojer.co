@@ -13,8 +13,8 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    lightImage: "/images/valueprops/carousel-hero.png",
-    darkImage: "/images/valueprops/carousel-hero.png",
+    lightImage: "/images/valueprops/kairos-thumbnail-light.jpg",
+    darkImage: "/images/valueprops/kairos-thumbnail-dark.jpg",
     alt: "Kairōs app preview",
   },
   {
