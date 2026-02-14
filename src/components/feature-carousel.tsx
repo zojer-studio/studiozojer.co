@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { cn } from "@/src/lib/utils";
 
 interface Slide {
@@ -39,8 +40,20 @@ const slides: Slide[] = [
   },
 ];
 
+const variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? "100%" : "-100%",
+  }),
+  center: {
+    x: 0,
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? "-100%" : "100%",
+  }),
+};
+
 export function FeatureCarousel({ className }: { className?: string }) {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [[currentIndex, direction], setPage] = React.useState([0, 0]);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -48,24 +61,36 @@ export function FeatureCarousel({ className }: { className?: string }) {
     setMounted(true);
   }, []);
 
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  const paginate = (newDirection: number) => {
+    const newIndex = (currentIndex + newDirection + slides.length) % slides.length;
+    setPage([newIndex, newDirection]);
   };
 
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToIndex = (index: number) => {
+    if (index === currentIndex) return;
+    const newDirection = index > currentIndex ? 1 : -1;
+    setPage([index, newDirection]);
+  };
+
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      paginate(1);
+    } else if (info.offset.x > swipeThreshold) {
+      paginate(-1);
+    }
   };
 
   const current = slides[currentIndex];
   const isDark = resolvedTheme === "dark";
-  const imageSrc = mounted ? (isDark ? current.darkImage : current.lightImage) : current.lightImage;
+  const src = mounted ? (isDark ? current.darkImage : current.lightImage) : current.lightImage;
 
   return (
     <div className={cn("w-full", className)}>
       <div className="relative">
         {/* Navigation buttons */}
         <button
-          onClick={goToPrev}
+          onClick={() => paginate(-1)}
           className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-8 h-8 rounded-full bg-bg-card border border-bd-primary flex items-center justify-center text-tx-secondary hover:text-tx-primary hover:bg-bg-elevated transition-colors"
           aria-label="Previous feature"
         >
@@ -75,7 +100,7 @@ export function FeatureCarousel({ className }: { className?: string }) {
         </button>
 
         <button
-          onClick={goToNext}
+          onClick={() => paginate(1)}
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-8 h-8 rounded-full bg-bg-card border border-bd-primary flex items-center justify-center text-tx-secondary hover:text-tx-primary hover:bg-bg-elevated transition-colors"
           aria-label="Next feature"
         >
@@ -84,26 +109,37 @@ export function FeatureCarousel({ className }: { className?: string }) {
           </svg>
         </button>
 
-        {/* Content - render all images, show only current */}
+        {/* Carousel content */}
         <div className="relative aspect-video overflow-hidden rounded-lg border border-bd-secondary w-full">
-          {slides.map((slide, index) => {
-            const src = mounted ? (isDark ? slide.darkImage : slide.lightImage) : slide.lightImage;
-            return (
+          <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              transition={{
+                x: { type: "tween", duration: 0.3, ease: "easeOut" },
+              }}
+              className="absolute inset-0 cursor-grab active:cursor-grabbing"
+            >
               <Image
-                key={slide.alt}
                 src={src}
-                alt={slide.alt}
+                alt={current.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 768px"
                 quality={95}
-                className={cn(
-                  "object-cover transition-opacity duration-300",
-                  index === currentIndex ? "opacity-100" : "opacity-0"
-                )}
+                className="object-cover pointer-events-none select-none"
+                draggable={false}
                 priority
               />
-            );
-          })}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
@@ -112,7 +148,7 @@ export function FeatureCarousel({ className }: { className?: string }) {
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => goToIndex(index)}
             className={cn(
               "w-2 h-2 rounded-full transition-colors",
               index === currentIndex ? "bg-tx-primary" : "bg-tx-disabled"
