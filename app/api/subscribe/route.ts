@@ -11,17 +11,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const apiKey = process.env.MAILERLITE_API_KEY
-    const groupId = process.env.MAILERLITE_GROUP_ID
-    if (!apiKey || !groupId) {
-      console.error("MAILERLITE_API_KEY or MAILERLITE_GROUP_ID is not configured")
+    const apiKey = process.env.KAIROS_MAIL_API_KEY
+    if (!apiKey) {
+      console.error("KAIROS_MAIL_API_KEY is not configured")
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
       )
     }
 
-    const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
+    const response = await fetch("https://api.kairos.solar/mail/subscribers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,15 +28,14 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email,
-        groups: [groupId],
+        source: "website",
       }),
     })
 
     const data = await response.json()
 
     if (!response.ok) {
-      // MailerLite returns specific error messages
-      const errorMessage = data.message || "Failed to subscribe"
+      const errorMessage = data.error || "Failed to subscribe"
       return NextResponse.json(
         { error: errorMessage },
         { status: response.status }
