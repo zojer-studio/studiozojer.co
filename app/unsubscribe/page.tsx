@@ -14,8 +14,10 @@ function UnsubscribeContent() {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`https://api.kairos.solar/mail/unsubscribe/${token}`, {
+    fetch("/api/unsubscribe", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
     })
       .then((res) => res.json())
       .then((data) => {
