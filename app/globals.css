@@ -347,3 +347,65 @@ body {
   border-top-right-radius: 0;
 }
 
+/* Changelog prose styles */
+.prose-changelog h1,
+.prose-changelog h2 {
+  font-family: var(--font-whyte-inktrap), var(--font-whyte), system-ui, sans-serif;
+  color: hsl(var(--dark-800));
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.prose-changelog h3 {
+  font-weight: 600;
+  color: hsl(var(--dark-800));
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-changelog p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-changelog ul,
+.prose-changelog ol {
+  list-style-position: inside;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-changelog ul {
+  list-style-type: disc;
+}
+
+.prose-changelog ol {
+  list-style-type: decimal;
+}
+
+.prose-changelog li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-changelog a {
+  color: hsl(var(--accent));
+  text-decoration: underline;
+}
+
+.prose-changelog a:hover {
+  opacity: 0.8;
+}
+
+.prose-changelog strong {
+  color: hsl(var(--dark-800));
+  font-weight: 600;
+}
+
+.prose-changelog hr {
+  border-color: hsl(var(--dark-800) / 0.08);
+  margin: 1.5rem 0;
+}
+
