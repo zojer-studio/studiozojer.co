@@ -14,7 +14,7 @@ export interface ChangelogEntry {
 const changelogDir = path.join(process.cwd(), "content", "changelog");
 
 function compareSemver(a: string, b: string): number {
-  const parse = (v: string) => v.replace(/^v/, "").split(".").map(Number);
+  const parse = (v: string) => v.replace(/^v/, "").split(".").map((s) => parseInt(s, 10) || 0);
   const [aMajor, aMinor, aPatch] = parse(a);
   const [bMajor, bMinor, bPatch] = parse(b);
   if (aMajor !== bMajor) return bMajor - aMajor;
@@ -33,7 +33,9 @@ export function getChangelogEntries(): ChangelogEntry[] {
     return {
       version: data.version ?? filename.replace(".md", ""),
       title: data.title ?? "",
-      date: data.date ?? "",
+      date: data.date instanceof Date
+        ? data.date.toISOString().split("T")[0]
+        : (data.date ?? ""),
       author: data.author ?? "",
       tags: data.tags ?? [],
       content: content.trim(),
