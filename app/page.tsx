@@ -34,6 +34,10 @@ export default function Home() {
           <a href="/support" className="hover:text-tx-primary transition-colors">
             Support
           </a>
+          <span>&middot;</span>
+          <a href="/changelog" className="hover:text-tx-primary transition-colors">
+            Changelog
+          </a>
         </footer>
     </div>
   );
