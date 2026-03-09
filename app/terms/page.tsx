@@ -67,7 +67,7 @@ export default function TermsOfService() {
             </p>
           </section>
 
-          {/* Subscriptions & Purchases */}
+          {/* Subscriptions & Purchases — commented out during beta, no purchases active
           <section>
             <h2 className="text-xl font-display text-tx-primary mb-4">
               Subscriptions & Purchases
@@ -111,6 +111,7 @@ export default function TermsOfService() {
               are handled by Apple. Prices may vary by region.
             </p>
           </section>
+          */}
 
           {/* Intellectual Property */}
           <section>

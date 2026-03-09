@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
           Privacy Policy
         </h1>
         <p className="text-tx-secondary mb-12">
-          Last updated: January 25, 2026
+          Last updated: March 8, 2026
         </p>
 
         <div className="space-y-10 text-tx-body">
@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
                 <h3 className="font-semibold text-tx-primary">Account Information</h3>
                 <p className="text-tx-secondary">
                   Your email address or Apple ID (if you sign in with Apple). Used for
-                  authentication only. Stored in Supabase.
+                  authentication only. Stored securely on our own servers.
                 </p>
               </div>
 
@@ -73,13 +73,28 @@ export default function PrivacyPolicy() {
               </div>
 
               <div>
+                <h3 className="font-semibold text-tx-primary">Analytics</h3>
+                <p className="text-tx-secondary">
+                  If you opt in during onboarding, we collect anonymous usage data to help
+                  improve the app. This includes which features you use (such as creating
+                  charts, viewing transits, or navigating aspects), app session duration,
+                  screen views, onboarding progress, and error reports. Each device is
+                  identified by a random anonymous ID. If you choose to link analytics with your account, events
+                  will be associated with your user identity. Analytics data is stored securely on our
+                  own servers &ndash; it is never sent to a third-party analytics service.
+                  We do not track your IP address, location, browser fingerprint, or
+                  advertising identifiers.
+                </p>
+              </div>
+
+              <div>
                 <h3 className="font-semibold text-tx-primary">Feedback</h3>
                 <p className="text-tx-secondary">
                   When you submit feedback through the app, we collect your feedback message
                   and selected category. Optionally, you may provide contact information
                   (email, phone, or social handle) and a vibe rating. We also automatically
                   capture device information: app version, iOS version, device model, and
-                  submission time. Feedback data is stored in Airtable (US-based). We use
+                  submission time. Feedback data is stored securely on our own servers. We use
                   this to improve the app and may contact you if you provided contact details.
                 </p>
               </div>
@@ -108,9 +123,10 @@ export default function PrivacyPolicy() {
               What We Don&apos;t Collect
             </h2>
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
-              <li>No analytics or usage tracking</li>
               <li>No advertising identifiers</li>
+              <li>No IP address or browser fingerprint tracking</li>
               <li>No location tracking (chart locations are what you enter, not GPS)</li>
+              <li>No third-party analytics services &ndash; all analytics data stays on our own servers</li>
               <li>We don&apos;t sell or share your data with third parties</li>
             </ul>
           </section>
@@ -132,7 +148,7 @@ export default function PrivacyPolicy() {
                 <tbody>
                   <tr className="border-b border-bd-secondary">
                     <td className="py-2 pr-4">Account (email/Apple ID)</td>
-                    <td className="py-2">Supabase (US-based)</td>
+                    <td className="py-2">Our own servers (self-hosted, US-based)</td>
                   </tr>
                   <tr className="border-b border-bd-secondary">
                     <td className="py-2 pr-4">Charts & preferences</td>
@@ -142,9 +158,13 @@ export default function PrivacyPolicy() {
                     <td className="py-2 pr-4">Backup files</td>
                     <td className="py-2">Your iCloud Drive</td>
                   </tr>
-                  <tr>
+                  <tr className="border-b border-bd-secondary">
                     <td className="py-2 pr-4">Feedback</td>
-                    <td className="py-2">Airtable (US-based)</td>
+                    <td className="py-2">Our own servers (self-hosted, US-based)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4">Analytics (if opted in)</td>
+                    <td className="py-2">Our own servers (self-hosted, US-based)</td>
                   </tr>
                 </tbody>
               </table>
@@ -161,17 +181,6 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>
-                <strong>Supabase</strong> &ndash; Authentication infrastructure.{" "}
-                <a
-                  href="https://supabase.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-tx-primary transition-colors"
-                >
-                  Their privacy policy
-                </a>
-              </li>
-              <li>
                 <strong>Apple</strong> &ndash; CloudKit, StoreKit, Sign in with Apple.{" "}
                 <a
                   href="https://www.apple.com/legal/privacy/"
@@ -182,18 +191,11 @@ export default function PrivacyPolicy() {
                   Their privacy policy
                 </a>
               </li>
-              <li>
-                <strong>Airtable</strong> &ndash; Feedback storage.{" "}
-                <a
-                  href="https://www.airtable.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-tx-primary transition-colors"
-                >
-                  Their privacy policy
-                </a>
-              </li>
             </ul>
+            <p className="mt-4 text-tx-secondary">
+              Account data, analytics, and feedback are stored on our own self-hosted
+              servers. No third-party services have access to this data.
+            </p>
           </section>
 
           {/* Data Security */}
@@ -202,8 +204,11 @@ export default function PrivacyPolicy() {
               Data Security
             </h2>
             <p className="text-tx-secondary">
-              Your data is protected by Supabase&apos;s, Apple&apos;s, and Airtable&apos;s security infrastructure.
-              All data is transmitted over encrypted connections (HTTPS).
+              Your data is protected by Apple&apos;s security infrastructure for CloudKit data,
+              and by our own self-hosted servers for account, analytics, and feedback data.
+              Our servers are secured with encrypted connections and access controls &ndash;
+              no third-party service has access to this data. All data is transmitted
+              over encrypted connections (HTTPS).
             </p>
           </section>
 
@@ -214,7 +219,7 @@ export default function PrivacyPolicy() {
             </h2>
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>
-                <strong>Delete your account:</strong> Removes your authentication data from Supabase
+                <strong>Delete your account:</strong> Removes your authentication and any linked analytics data from our servers
               </li>
               <li>
                 <strong>Delete chart data:</strong> Use the app or your iCloud settings

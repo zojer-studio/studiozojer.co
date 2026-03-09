@@ -94,7 +94,7 @@ export default function Support() {
             </div>
           </section>
 
-          {/* Subscriptions & Purchases */}
+          {/* Subscriptions & Purchases — commented out during beta, no purchases active
           <section>
             <h2 className="text-xl font-display text-tx-primary mb-4">
               Subscriptions & Purchases
@@ -147,6 +147,7 @@ export default function Support() {
               </div>
             </div>
           </section>
+          */}
 
           {/* Charts & Data */}
           <section>
@@ -202,6 +203,7 @@ export default function Support() {
                   <li>If the issue persists, try deleting and reinstalling the app (your data will sync back from iCloud, which may take up to 10 minutes)</li>
                 </ul>
               </div>
+              {/* Purchase Not Recognized — commented out during beta, no purchases active
               <div>
                 <h3 className="font-semibold text-tx-primary">Purchase Not Recognized</h3>
                 <ul className="list-disc list-inside space-y-1 mt-2">
@@ -210,6 +212,7 @@ export default function Support() {
                   <li>Wait a few minutes and try again &ndash; App Store can be slow</li>
                 </ul>
               </div>
+              */}
             </div>
           </section>
 
