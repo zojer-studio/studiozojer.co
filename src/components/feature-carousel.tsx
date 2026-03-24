@@ -87,6 +87,20 @@ export function FeatureCarousel({ className }: { className?: string }) {
 
   return (
     <div className={cn("w-full", className)}>
+      {/* Preload all slide images so transitions are instant */}
+      <div aria-hidden="true" className="absolute w-0 h-0 overflow-hidden">
+        {mounted &&
+          slides.map((slide, i) => (
+            <Image
+              key={i}
+              src={isDark ? slide.darkImage : slide.lightImage}
+              alt=""
+              width={1}
+              height={1}
+              priority
+            />
+          ))}
+      </div>
       <div className="relative">
         {/* Navigation buttons */}
         <button
