@@ -87,19 +87,35 @@ export function FeatureCarousel({ className }: { className?: string }) {
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Preload all slide images so transitions are instant */}
+      {/* Preload both theme variants of non-current slides so transitions are instant regardless of theme */}
       <div aria-hidden="true" className="absolute w-0 h-0 overflow-hidden">
-        {mounted &&
-          slides.map((slide, i) => (
-            <Image
-              key={i}
-              src={isDark ? slide.darkImage : slide.lightImage}
-              alt=""
-              width={1}
-              height={1}
-              priority
-            />
-          ))}
+        {slides.map((slide, i) => {
+          if (i === currentIndex) return null;
+          return (
+            <React.Fragment key={i}>
+              <div style={{ position: "relative", width: 768, height: 432 }}>
+                <Image
+                  src={slide.lightImage}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  quality={95}
+                  loading="eager"
+                />
+              </div>
+              <div style={{ position: "relative", width: 768, height: 432 }}>
+                <Image
+                  src={slide.darkImage}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  quality={95}
+                  loading="eager"
+                />
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
       <div className="relative">
         {/* Navigation buttons */}
