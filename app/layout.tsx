@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/src/components/theme-provider";
 import { FaviconSwitcher } from "@/src/components/favicon-switcher";
 import { ThemeDebug } from "@/src/components/theme-debug";
+import { Nav } from "@/src/components/nav";
 
 const whyte = localFont({
   src: [
@@ -134,6 +135,7 @@ export default function RootLayout({
         >
           <FaviconSwitcher />
           {/* <ThemeDebug /> */}
+          <Nav />
           {children}
         </ThemeProvider>
       </body>
