@@ -1,44 +1,71 @@
-import { NewsletterForm } from "@/src/components/newsletter-form";
+import { HeroSection } from "@/src/components/hero-section";
 import { FeatureCarousel } from "@/src/components/feature-carousel";
+import { StudioSection } from "@/src/components/studio-section";
+import { HubSection } from "@/src/components/hub-section";
 
 export default function Home() {
   return (
-    <div className="min-h-screen grid grid-cols-[1fr_min(28rem,calc(100%-4rem))_1fr] gap-y-8 py-24 content-center">
-      {/* Title section */}
-      <div className="col-start-2 flex flex-col gap-2 text-center">
-        <h1 className="text-6xl font-display text-tx-primary">
-          Kairōs
-        </h1>
-        <h3>
-          by <a href="https://www.threads.com/@zojer.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-tx-primary transition-colors">Zojer Studio</a>
-        </h3>
-        <p className="text-tx-secondary">Beta available now on iOS Testflight.</p>
-      </div>
+    <main>
+      {/* 1. Hero */}
+      <HeroSection />
 
-      {/* Carousel - full bleed */}
-      <FeatureCarousel className="col-span-full max-w-3xl mx-auto w-full px-8" />
+      {/* 2. Feature carousel */}
+      <section className="border-t border-bd-secondary px-8 py-20 bg-bg-base">
+        <div className="max-w-3xl mx-auto">
+          <p className="font-mono text-xs tracking-[0.14em] uppercase text-tx-tertiary mb-2 text-center">
+            The app
+          </p>
+          <h2 className="text-3xl font-display text-tx-primary tracking-tight mb-8 text-center">
+            Astrology built for depth
+          </h2>
+          <FeatureCarousel />
+          <div className="flex flex-wrap justify-center gap-2 mt-6">
+            {[
+              "Shared placements",
+              "Current transits",
+              "Aspect stepping",
+              "Display profiles",
+              "Chart reordering",
+            ].map((label) => (
+              <span
+                key={label}
+                className="bg-bg-primary border border-bd-secondary rounded-full px-3 py-1 text-xs text-tx-secondary"
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* Newsletter */}
-      <NewsletterForm className="col-start-2" />
+      {/* 3. Studio */}
+      <StudioSection />
+
+      {/* 4. Hub */}
+      <HubSection />
 
       {/* Footer */}
-      <footer className="col-start-2 mt-8 pt-8 border-t border-bd-secondary text-tx-tertiary text-sm flex gap-4 justify-center">
-          <a href="/terms" className="hover:text-tx-primary transition-colors">
-            Terms
-          </a>
-          <span>&middot;</span>
-          <a href="/privacy" className="hover:text-tx-primary transition-colors">
-            Privacy
-          </a>
-          <span>&middot;</span>
-          <a href="/support" className="hover:text-tx-primary transition-colors">
-            Support
-          </a>
-          <span>&middot;</span>
-          <a href="/changelog" className="hover:text-tx-primary transition-colors">
-            Changelog
-          </a>
-        </footer>
-    </div>
+      <footer className="border-t border-bd-secondary px-8 py-6 bg-bg-dark">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <span className="text-xs text-tx-tertiary font-mono">
+            Zojer Studio
+          </span>
+          <div className="flex gap-4 text-xs text-tx-tertiary">
+            <a href="/terms" className="hover:text-tx-primary transition-colors">
+              Terms
+            </a>
+            <a href="/privacy" className="hover:text-tx-primary transition-colors">
+              Privacy
+            </a>
+            <a href="/support" className="hover:text-tx-primary transition-colors">
+              Support
+            </a>
+            <a href="/changelog" className="hover:text-tx-primary transition-colors">
+              Changelog
+            </a>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
