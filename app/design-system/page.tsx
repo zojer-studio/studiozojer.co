@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8 pb-20 sm:p-20">
       <header className="flex justify-between items-center mb-12">
-        <h1 className="text-3xl font-bold text-tx-primary">Zojer Studio</h1>
+        <h1 className="text-3xl font-bold text-tx-primary">studiozojer</h1>
         <ThemeToggle />
       </header>
 

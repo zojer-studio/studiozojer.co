@@ -72,9 +72,9 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className={cn("flex flex-col gap-2", className)}>
-      <h3 className="text-lg font-medium text-tx-primary text-left">Get Beta Link</h3>
       <div className="flex gap-2 sm:flex-row flex-col">
         <Input
+          id="beta-email"
           type="text"
           placeholder="Enter your email"
           value={email}

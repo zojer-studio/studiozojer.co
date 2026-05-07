@@ -137,7 +137,7 @@
   --color-bg-accent-hover: hsl(var(--accent) / 0.12);
   --color-bg-accent-pressed: hsl(var(--accent) / 0.15);
   --color-bg-accent-disabled: hsl(var(--accent) / 0.04);
-  --color-bg-button-DEFAULT: hsl(var(--dark-800));
+  --color-bg-button: hsl(var(--dark-800));
   --color-bg-button-hover: hsl(var(--dark-900));
   --color-bg-button-pressed: hsl(var(--dark-950));
   --color-bg-button-disabled: hsl(var(--dark-800) / 0.5);

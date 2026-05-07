@@ -5,9 +5,9 @@ import remarkGfm from "remark-gfm";
 import { getChangelogEntries } from "@/src/lib/changelog";
 
 export const metadata: Metadata = {
-  title: "Changelog | Zojer Studio",
+  title: "Changelog | studiozojer",
   description:
-    "Release notes for Kairos, the iOS astrology app by Zojer Studio",
+    "Release notes for Kairos, the iOS astrology app by studiozojer",
 };
 
 function formatDate(dateStr: string): string {
@@ -23,15 +23,8 @@ export default function Changelog() {
   const entries = getChangelogEntries();
 
   return (
-    <div className="min-h-screen py-16 px-8">
+    <div className="min-h-screen pt-28 pb-16 px-8">
       <main className="max-w-2xl mx-auto">
-        <Link
-          href="/"
-          className="text-tx-secondary hover:text-tx-primary transition-colors text-sm mb-8 inline-block"
-        >
-          &larr; Back to home
-        </Link>
-
         <h1 className="text-4xl font-display text-tx-primary mb-2">
           Changelog
         </h1>

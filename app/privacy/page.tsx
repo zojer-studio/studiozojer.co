@@ -2,21 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Zojer Studio",
-  description: "Privacy Policy for Kairos, the iOS astrology app by Zojer Studio",
+  title: "Privacy Policy | studiozojer",
+  description: "Privacy Policy for Kairos, the iOS astrology app by studiozojer",
 };
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen py-16 px-8">
+    <div className="min-h-screen pt-28 pb-16 px-8">
       <main className="max-w-2xl mx-auto">
-        <Link
-          href="/"
-          className="text-tx-secondary hover:text-tx-primary transition-colors text-sm mb-8 inline-block"
-        >
-          &larr; Back to home
-        </Link>
-
         <h1 className="text-4xl font-display text-tx-primary mb-2">
           Privacy Policy
         </h1>
@@ -28,7 +21,7 @@ export default function PrivacyPolicy() {
           {/* Intro */}
           <section>
             <p>
-              Kairos is built by Zojer Studio LLC. We believe in minimal data collection
+              Kairos is built by Studio Zojer, LLC. We believe in minimal data collection
               and transparency about what we do collect. This policy explains how we
               handle your information.
             </p>
@@ -293,7 +286,7 @@ export default function PrivacyPolicy() {
               </a>
             </p>
             <p className="text-tx-tertiary mt-4">
-              Zojer Studio LLC
+              Studio Zojer, LLC
             </p>
           </section>
         </div>

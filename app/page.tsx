@@ -48,7 +48,7 @@ export default function Home() {
       <footer className="border-t border-bd-secondary px-8 py-6 bg-bg-dark">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <span className="text-xs text-tx-tertiary font-mono">
-            Zojer Studio
+            studiozojer
           </span>
           <div className="flex gap-4 text-xs text-tx-tertiary">
             <a href="/terms" className="hover:text-tx-primary transition-colors">

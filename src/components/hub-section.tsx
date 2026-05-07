@@ -1,5 +1,5 @@
-// TODO: replace with the actual survey URL
-const SURVEY_URL = "#";
+const SURVEY_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdGuyR6jzKTOk91ImVuBdMb4UXhRMmtZczHyKDNSmJ635Yc1w/viewform?usp=header";
 
 export function HubSection() {
   return (

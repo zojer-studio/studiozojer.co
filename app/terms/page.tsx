@@ -2,21 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Zojer Studio",
-  description: "Terms of Service for Kairos, the iOS astrology app by Zojer Studio",
+  title: "Terms of Service | studiozojer",
+  description: "Terms of Service for Kairos, the iOS astrology app by studiozojer",
 };
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen py-16 px-8">
+    <div className="min-h-screen pt-28 pb-16 px-8">
       <main className="max-w-2xl mx-auto">
-        <Link
-          href="/"
-          className="text-tx-secondary hover:text-tx-primary transition-colors text-sm mb-8 inline-block"
-        >
-          &larr; Back to home
-        </Link>
-
         <h1 className="text-4xl font-display text-tx-primary mb-2">
           Terms of Service
         </h1>
@@ -119,7 +112,7 @@ export default function TermsOfService() {
               Intellectual Property
             </h2>
             <p className="text-tx-secondary">
-              Kairos and its content, features, and functionality are owned by Zojer Studio LLC
+              Kairos and its content, features, and functionality are owned by Studio Zojer, LLC
               and are protected by copyright and other intellectual property laws. You receive
               a limited, non-exclusive license to use the app for personal, non-commercial purposes.
             </p>
@@ -165,7 +158,7 @@ export default function TermsOfService() {
               Limitation of Liability
             </h2>
             <p className="text-tx-secondary">
-              To the maximum extent permitted by law, Zojer Studio LLC is not liable for
+              To the maximum extent permitted by law, Studio Zojer, LLC is not liable for
               indirect, incidental, or consequential damages arising from your use of Kairos.
               Our total liability is limited to the amount you paid us in the past 12 months.
             </p>
@@ -179,7 +172,7 @@ export default function TermsOfService() {
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>You may delete your account at any time</li>
               <li>We may terminate accounts that violate these terms</li>
-              <li>Upon termination, you retain the right to use the app and Apple&apos;s cloud services, but your access to Zojer Studio&apos;s online and social features ends</li>
+              <li>Upon termination, you retain the right to use the app and Apple&apos;s cloud services, but your access to studiozojer&apos;s online and social features ends</li>
             </ul>
           </section>
 
@@ -232,7 +225,7 @@ export default function TermsOfService() {
               </a>
             </p>
             <p className="text-tx-tertiary mt-4">
-              Zojer Studio LLC
+              Studio Zojer, LLC
             </p>
           </section>
         </div>

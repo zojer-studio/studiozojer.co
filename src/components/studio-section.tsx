@@ -7,7 +7,7 @@ export function StudioSection() {
       <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_200px] gap-12 items-center">
         <div>
           <p className="font-mono text-xs tracking-[0.14em] uppercase text-tx-tertiary mb-2">
-            Zojer Studio
+            studiozojer
           </p>
           <h2 className="text-3xl font-display text-tx-primary tracking-tight mb-5">
             Built on graph architecture
