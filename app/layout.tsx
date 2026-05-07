@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/src/components/theme-provider";
-import { FaviconSwitcher } from "@/src/components/favicon-switcher";
 import { ThemeDebug } from "@/src/components/theme-debug";
 import { Nav } from "@/src/components/nav";
 
@@ -93,26 +92,8 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: [
-      {
-        url: "/favicon-light/favicon.ico",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-dark/favicon.ico",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
-    apple: [
-      {
-        url: "/favicon-light/apple-touch-icon.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-dark/apple-touch-icon.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    icon: "/favicon-light/favicon.ico",
+    apple: "/favicon-light/apple-touch-icon.png",
   },
 };
 
@@ -133,7 +114,6 @@ export default function RootLayout({
           enableColorScheme
           disableTransitionOnChange
         >
-          <FaviconSwitcher />
           {/* <ThemeDebug /> */}
           <Nav />
           {children}
