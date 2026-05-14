@@ -24,7 +24,8 @@ export function Nav() {
             targetId="beta-email"
             className="bg-bg-button text-tx-button text-sm px-4 py-1.5 rounded-lg hover:bg-bg-button-hover transition-colors"
           >
-            Join the beta →
+            <span className="sm:hidden">Join beta</span>
+            <span className="hidden sm:inline">Join the beta →</span>
           </SmoothScrollLink>
         </div>
       </nav>

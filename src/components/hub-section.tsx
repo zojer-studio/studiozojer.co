@@ -19,7 +19,7 @@ export function HubSection() {
           href={SURVEY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between gap-6 bg-bg-card border border-bd-secondary rounded-xl p-6 hover:bg-bg-card-hover transition-colors group"
+          className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 bg-bg-card border border-bd-secondary rounded-xl p-6 hover:bg-bg-card-hover transition-colors group"
         >
           <div>
             <h3 className="text-sm font-semibold text-tx-primary mb-1">
@@ -30,7 +30,7 @@ export function HubSection() {
               understand what matters to you most about astrology apps.
             </p>
           </div>
-          <span className="bg-bg-button text-tx-button text-sm px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 group-hover:bg-bg-button-hover transition-colors">
+          <span className="self-end sm:self-auto bg-bg-button text-tx-button text-sm px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 group-hover:bg-bg-button-hover transition-colors">
             Take the survey →
           </span>
         </a>
