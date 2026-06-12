@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/src/components/theme-provider";
 import { ThemeDebug } from "@/src/components/theme-debug";
 import { Nav } from "@/src/components/nav";
@@ -118,6 +119,7 @@ export default function RootLayout({
           <Nav />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
