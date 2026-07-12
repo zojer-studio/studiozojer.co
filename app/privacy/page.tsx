@@ -20,10 +20,18 @@ export default function PrivacyPolicy() {
         <div className="space-y-10 text-tx-body">
           {/* Intro */}
           <section>
-            <p>
+            <p className="mb-4">
               Kairos is built by Studio Zojer, LLC. We believe in minimal data collection
               and transparency about what we do collect. This policy explains how we
               handle your information.
+            </p>
+            <p>
+              It covers two different things, and the difference matters:{" "}
+              <strong className="text-tx-primary">the Kairos app</strong>, which you
+              install on your device, and{" "}
+              <strong className="text-tx-primary">this website</strong>{" "}
+              (studiozojer.co), where you might read a changelog, join our mailing list,
+              or answer a survey. Where a section applies to only one of them, it says so.
             </p>
           </section>
 
@@ -91,6 +99,39 @@ export default function PrivacyPolicy() {
                   this to improve the app and may contact you if you provided contact details.
                 </p>
               </div>
+
+              <div>
+                <h3 className="font-semibold text-tx-primary">
+                  Mailing List <span className="font-normal text-tx-tertiary">(website)</span>
+                </h3>
+                <p className="text-tx-secondary">
+                  If you enter your email address to join our mailing list, we store that
+                  address on our own servers so we can send you occasional updates. Every
+                  email we send includes a one-click unsubscribe link, and unsubscribing
+                  removes you from the list.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-tx-primary">
+                  Surveys &amp; Forms <span className="font-normal text-tx-tertiary">(website)</span>
+                </h3>
+                <p className="text-tx-secondary">
+                  If you fill in a form or survey on this website, we store your answers on
+                  our own servers. Forms are hosted by us &ndash; your answers are not sent
+                  to Google Forms, Typeform, or any other third-party form service. If a
+                  form asks for your email address, we only add you to our mailing list when
+                  you explicitly tick the box asking us to; leaving your address without
+                  ticking it subscribes you to nothing.
+                </p>
+                <p className="text-tx-secondary mt-2">
+                  When you submit a form we use your IP address{" "}
+                  <strong className="text-tx-primary">transiently</strong>, to stop
+                  automated abuse. It is cryptographically hashed before it is written
+                  anywhere, it is never stored alongside your answers, and the record is
+                  deleted within minutes. We do not log or retain your IP address.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -117,9 +158,18 @@ export default function PrivacyPolicy() {
             </h2>
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>No advertising identifiers</li>
-              <li>No IP address or browser fingerprint tracking</li>
+              <li>
+                <strong className="text-tx-primary">In the app:</strong> no IP address or
+                browser fingerprint tracking, and no third-party analytics &ndash; all app
+                analytics stay on our own servers
+              </li>
+              <li>
+                <strong className="text-tx-primary">On this website:</strong> we use Vercel
+                Analytics for aggregate page-view counts (see Third-Party Services below).
+                We do not log your IP address, and we do not fingerprint, profile, or track
+                you across other sites
+              </li>
               <li>No location tracking (chart locations are what you enter, not GPS)</li>
-              <li>No third-party analytics services &ndash; all analytics data stays on our own servers</li>
               <li>We don&apos;t sell or share your data with third parties</li>
             </ul>
           </section>
@@ -155,9 +205,21 @@ export default function PrivacyPolicy() {
                     <td className="py-2 pr-4">Feedback</td>
                     <td className="py-2">Our own servers (self-hosted, US-based)</td>
                   </tr>
-                  <tr>
-                    <td className="py-2 pr-4">Analytics (if opted in)</td>
+                  <tr className="border-b border-bd-secondary">
+                    <td className="py-2 pr-4">App analytics (if opted in)</td>
                     <td className="py-2">Our own servers (self-hosted, US-based)</td>
+                  </tr>
+                  <tr className="border-b border-bd-secondary">
+                    <td className="py-2 pr-4">Mailing list (email address)</td>
+                    <td className="py-2">Our own servers (self-hosted, US-based)</td>
+                  </tr>
+                  <tr className="border-b border-bd-secondary">
+                    <td className="py-2 pr-4">Survey &amp; form responses</td>
+                    <td className="py-2">Our own servers (self-hosted, US-based)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4">Website page views</td>
+                    <td className="py-2">Vercel Analytics (aggregate, no IP logging)</td>
                   </tr>
                 </tbody>
               </table>
@@ -170,11 +232,12 @@ export default function PrivacyPolicy() {
               Third-Party Services
             </h2>
             <p className="mb-4">
-              We use the following services to operate Kairos:
+              We use the following services to operate Kairos and this website:
             </p>
             <ul className="list-disc list-inside space-y-2 text-tx-secondary">
               <li>
-                <strong>Apple</strong> &ndash; CloudKit, StoreKit, Sign in with Apple.{" "}
+                <strong>Apple</strong> <span className="text-tx-tertiary">(app)</span>{" "}
+                &ndash; CloudKit, StoreKit, Sign in with Apple.{" "}
                 <a
                   href="https://www.apple.com/legal/privacy/"
                   target="_blank"
@@ -184,10 +247,37 @@ export default function PrivacyPolicy() {
                   Their privacy policy
                 </a>
               </li>
+              <li>
+                <strong>Vercel</strong> <span className="text-tx-tertiary">(website)</span>{" "}
+                &ndash; hosting for studiozojer.co, and Vercel Analytics for aggregate
+                page-view counts.{" "}
+                <a
+                  href="https://vercel.com/legal/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-tx-primary transition-colors"
+                >
+                  Their privacy policy
+                </a>
+              </li>
+              <li>
+                <strong>Resend</strong> <span className="text-tx-tertiary">(email)</span>{" "}
+                &ndash; delivers the emails we send you. They see your email address in
+                order to deliver mail to it.{" "}
+                <a
+                  href="https://resend.com/legal/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-tx-primary transition-colors"
+                >
+                  Their privacy policy
+                </a>
+              </li>
             </ul>
             <p className="mt-4 text-tx-secondary">
-              Account data, analytics, and feedback are stored on our own self-hosted
-              servers. No third-party services have access to this data.
+              Everything else &ndash; account data, app analytics, feedback, mailing list
+              addresses, and survey responses &ndash; is stored on our own self-hosted
+              servers, and no third-party service has access to it.
             </p>
           </section>
 
@@ -197,11 +287,12 @@ export default function PrivacyPolicy() {
               Data Security
             </h2>
             <p className="text-tx-secondary">
-              Your data is protected by Apple&apos;s security infrastructure for CloudKit data,
-              and by our own self-hosted servers for account, analytics, and feedback data.
-              Our servers are secured with encrypted connections and access controls &ndash;
-              no third-party service has access to this data. All data is transmitted
-              over encrypted connections (HTTPS).
+              Your data is protected by Apple&apos;s security infrastructure for CloudKit
+              data, and by our own self-hosted servers for account, analytics, feedback,
+              mailing list, and survey data. Our servers are secured with encrypted
+              connections and access controls, and all data is transmitted over encrypted
+              connections (HTTPS). Apart from the services named above &ndash; and only for
+              the purposes named there &ndash; no third party has access to this data.
             </p>
           </section>
 
