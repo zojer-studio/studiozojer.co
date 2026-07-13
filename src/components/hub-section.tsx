@@ -1,5 +1,8 @@
-const SURVEY_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdGuyR6jzKTOk91ImVuBdMb4UXhRMmtZczHyKDNSmJ635Yc1w/viewform?usp=header";
+import Link from "next/link";
+
+// Our own form, on our own servers. Was a Google Form — the last place on this site that
+// handed a visitor's answers to a third party.
+const SURVEY_URL = "/forms/kairos-2026-survey";
 
 export function HubSection() {
   return (
@@ -15,10 +18,8 @@ export function HubSection() {
           kairos.solar
         </h2>
 
-        <a
+        <Link
           href={SURVEY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 bg-bg-card border border-bd-secondary rounded-xl p-6 hover:bg-bg-card-hover transition-colors group"
         >
           <div>
@@ -33,7 +34,7 @@ export function HubSection() {
           <span className="self-end sm:self-auto bg-bg-button text-tx-button text-sm px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 group-hover:bg-bg-button-hover transition-colors">
             Take the survey →
           </span>
-        </a>
+        </Link>
 
         <p className="font-mono text-xs text-tx-tertiary tracking-wide mt-4 opacity-60">
           More from the hub coming soon.

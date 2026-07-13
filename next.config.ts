@@ -5,6 +5,12 @@ import createMDX from "@next/mdx";
 // remark/rehype plugins. For full MDX plugin support in dev, use `next dev --webpack`.
 // Production builds with `next build --webpack` will use all plugins.
 
+// kairos.admin embeds a form page in an iframe so the builder's preview IS the real
+// renderer rather than a second one that drifts. Browsers refuse cross-origin framing by
+// default, so the admin origin has to be named — and only for /forms/*, never site-wide.
+const ADMIN_ORIGIN =
+  process.env.NEXT_PUBLIC_ADMIN_ORIGIN ?? "https://admin.zojer.studio";
+
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   async headers() {
@@ -15,6 +21,15 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Type",
             value: "application/json",
+          },
+        ],
+      },
+      {
+        source: "/forms/:slug*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: `frame-ancestors 'self' ${ADMIN_ORIGIN}`,
           },
         ],
       },
