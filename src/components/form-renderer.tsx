@@ -60,6 +60,8 @@ export function FormRenderer({
     if (!previewMode) return
 
     const adminOrigin = process.env.NEXT_PUBLIC_ADMIN_ORIGIN
+    let heard = false
+
     const onMessage = (event: MessageEvent) => {
       // Anyone can iframe a page they can reach; only the admin may drive it.
       if (!adminOrigin || event.origin !== adminOrigin) return
@@ -67,6 +69,7 @@ export function FormRenderer({
       const data = event.data as PreviewMessage
       if (data?.type !== "forms:preview") return
 
+      heard = true
       setLive((prev) => ({
         ...prev,
         title: data.title,
@@ -76,10 +79,30 @@ export function FormRenderer({
     }
 
     window.addEventListener("message", onMessage)
-    // Tell the parent we are mounted and listening, so it knows when to send.
-    window.parent.postMessage({ type: "forms:ready" }, adminOrigin ?? "*")
 
-    return () => window.removeEventListener("message", onMessage)
+    // Announce that we are mounted and listening — and keep announcing until the admin
+    // answers.
+    //
+    // A single announcement is a race we lose about half the time: on a warm cache this
+    // iframe mounts and fires before the parent has attached its own listener, and in
+    // React's development double-invoke the parent's listener is detached and reattached
+    // around exactly this moment. The message is then gone forever and the preview stays
+    // blank with no error anywhere — which is the worst possible failure for a feature
+    // whose entire job is to show you something.
+    //
+    // Retrying makes the handshake self-healing: whenever the parent starts listening, the
+    // next beat reaches it.
+    const announce = () => window.parent.postMessage({ type: "forms:ready" }, adminOrigin ?? "*")
+    announce()
+    const beat = setInterval(() => {
+      if (heard) return clearInterval(beat)
+      announce()
+    }, 250)
+
+    return () => {
+      clearInterval(beat)
+      window.removeEventListener("message", onMessage)
+    }
   }, [previewMode])
 
   // Reset if the server hands us a genuinely different form.
@@ -162,6 +185,27 @@ export function FormRenderer({
 
   return (
     <form onSubmit={handleSubmit} className={cn("flex flex-col gap-8", className)} noValidate>
+      {/* In preview mode the header is live too, so it belongs here rather than on the
+          page — this component holds the postMessage state. */}
+      {previewMode && (
+        <div>
+          <h1 className="text-4xl font-display text-tx-primary mb-2">
+            {live.title || (
+              <span className="text-tx-tertiary">Untitled form</span>
+            )}
+          </h1>
+          {live.description && (
+            <p className="text-tx-secondary">{live.description}</p>
+          )}
+        </div>
+      )}
+
+      {previewMode && live.fields.length === 0 && (
+        <p className="text-tx-tertiary py-8 text-center">
+          Add a field to see it here.
+        </p>
+      )}
+
       {live.fields.map((field, index) => (
         <FieldView
           key={field.key ?? `${field.type}-${index}`}
