@@ -4,7 +4,15 @@ import { createHmac, timingSafeEqual } from "node:crypto"
 
 import type { FormDefinition } from "@/src/lib/forms"
 
-const API_BASE = process.env.KAIROS_API_URL ?? "https://api.kairos.solar"
+// Note the /mail prefix. Caddy routes api.kairos.solar/mail/* to the kairos.mail service
+// (stripping the prefix) and sends everything else to kairos.rs -- so a root-level
+// /forms/* would land on kairos.rs, which has never heard of forms, and 404. The path
+// says "served by the mail service", which is true, and it will change when that service
+// is eventually renamed.
+//
+// KAIROS_API_URL overrides the whole base, so local dev points straight at the service
+// (http://localhost:3002) with no prefix.
+const API_BASE = process.env.KAIROS_API_URL ?? "https://api.kairos.solar/mail"
 
 /**
  * Fetch a form definition.

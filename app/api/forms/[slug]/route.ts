@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 
-const API_BASE = process.env.KAIROS_API_URL ?? "https://api.kairos.solar"
+// The /mail prefix is load-bearing: Caddy routes api.kairos.solar/mail/* to kairos.mail
+// and everything else to kairos.rs. See src/lib/forms-server.ts for the full note.
+const API_BASE = process.env.KAIROS_API_URL ?? "https://api.kairos.solar/mail"
 
 // A survey is prose, not a payload. 64KB is generous for the longest thing anyone will
 // type and small enough that nobody can post a novel at us.
