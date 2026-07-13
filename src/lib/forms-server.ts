@@ -49,31 +49,49 @@ export async function fetchForm(
 // kairos.admin signs a token; this site verifies it. A valid token lets the admin's
 // iframe render a form that is still a draft.
 //
-// The expiry is not decoration. Without it, a token that leaked once would be a
-// permanent backdoor to every unpublished form.
+// The signing key is DERIVED from KAIROS_MAIL_API_KEY rather than being a secret of its
+// own. Both apps already hold that key, so there is nothing new to generate and nothing
+// to keep in sync — which matters because the failure mode of a hand-copied shared
+// secret is silent: the signatures simply stop matching, every preview 404s, and it
+// looks like a bug in the builder rather than a config drift.
+//
+// Standard domain-separated derivation: the label means this key can never collide with
+// the API key's own use as a bearer token, even though both descend from one secret.
+// Rotating the API key invalidates outstanding preview links, which live an hour anyway.
 
+const PREVIEW_KEY_LABEL = "forms-preview-v1"
 const TOKEN_TTL_MS = 60 * 60 * 1000 // 1 hour
 
-function sign(slug: string, exp: number, secret: string): string {
-  return createHmac("sha256", secret).update(`${slug}.${exp}`).digest("hex")
+/** The derived signing key. Exported shape is shared with kairos.admin's copy. */
+function previewKey(apiKey: string): Buffer {
+  return createHmac("sha256", apiKey).update(PREVIEW_KEY_LABEL).digest()
 }
 
-/** `<exp>.<hmac>` — used by kairos.admin to build the iframe URL. */
-export function signPreviewToken(slug: string, secret: string): string {
+function sign(slug: string, exp: number, apiKey: string): string {
+  return createHmac("sha256", previewKey(apiKey))
+    .update(`${slug}.${exp}`)
+    .digest("hex")
+}
+
+/** `<exp>.<hmac>` — kairos.admin builds the iframe URL with this. */
+export function signPreviewToken(slug: string, apiKey: string): string {
   const exp = Date.now() + TOKEN_TTL_MS
-  return `${exp}.${sign(slug, exp, secret)}`
+  return `${exp}.${sign(slug, exp, apiKey)}`
 }
 
 export function verifyPreviewToken(slug: string, token: string | undefined): boolean {
-  const secret = process.env.FORMS_PREVIEW_SECRET
-  if (!secret || !token) return false
+  const apiKey = process.env.KAIROS_MAIL_API_KEY
+  if (!apiKey || !token) return false
 
   const [expRaw, mac] = token.split(".")
   const exp = Number(expRaw)
   if (!Number.isFinite(exp) || !mac) return false
+
+  // Not decoration: without an expiry, a token that leaked once would be a permanent
+  // backdoor to every unpublished form.
   if (Date.now() > exp) return false
 
-  const expected = sign(slug, exp, secret)
+  const expected = sign(slug, exp, apiKey)
   // Both are fixed-length hex from the same HMAC, so the lengths always match — but
   // compare in constant time regardless, rather than leaking a prefix through timing.
   const a = Buffer.from(expected, "hex")
