@@ -15,7 +15,7 @@ export function Nav() {
             Studio
           </SmoothScrollLink>
           <SmoothScrollLink href="/#hub" targetId="hub" className="hover:text-tx-primary transition-colors">
-            Hub
+            Survey
           </SmoothScrollLink>
         </div>
         <div className="flex justify-end">
