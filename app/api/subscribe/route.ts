@@ -42,7 +42,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ success: true })
+    if (data.welcome == null) {
+      console.warn("subscribe: upstream returned no `welcome` field — kairos.mail may be undeployed or the proxy may be dropping it")
+    }
+
+    return NextResponse.json({
+      success: true,
+      welcome: data.welcome ?? null,
+    })
   } catch (error) {
     console.error("Subscribe error:", error)
     return NextResponse.json(

@@ -16,6 +16,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
   const [email, setEmail] = React.useState("")
   const [status, setStatus] = React.useState<FormStatus>("idle")
   const [errorMessage, setErrorMessage] = React.useState("")
+  const [welcome, setWelcome] = React.useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,6 +54,7 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
         return
       }
 
+      setWelcome(data.welcome ?? null)
       setStatus("success")
       setEmail("")
     } catch {
@@ -62,10 +64,16 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
   }
 
   if (status === "success") {
+    const message =
+      welcome === "queued"
+        ? "Thanks for subscribing — check your inbox for your welcome email."
+        : welcome === "rate_limited"
+          ? "You're already subscribed. Your welcome email was sent recently — check your inbox, and your spam folder."
+          : "Thanks for subscribing!"
+
     return (
       <div className={cn("text-center py-4", className)}>
-        <p className="text-tx-success font-medium">Thanks for subscribing!</p>
-        <p className="text-tx-secondary text-sm mt-1">Check your inbox to confirm.</p>
+        <p className="text-tx-success font-medium">{message}</p>
       </div>
     )
   }
