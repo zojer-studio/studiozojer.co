@@ -2,6 +2,11 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
+import {
+  GLYPHS,
+  GLYPH_VIEWBOX,
+  SIGN_GLYPHS,
+} from "@/src/lib/glyphs.generated";
 
 /**
  * The hero's ambient graph.
@@ -19,21 +24,34 @@ import { useTheme } from "next-themes";
  * grows a web-consumable layer — see zojercommons/projects/daoui/specs/.
  */
 
-const SIGNS = [
-  "♈", "♉", "♊", "♋", "♌", "♍",
-  "♎", "♏", "♐", "♑", "♒", "♓",
-] as const;
+/** Sign index 0–11 → the studio's own glyph, in zodiacal order. */
+const SIGNS = SIGN_GLYPHS;
 
-const BODIES = ["☉", "☽", "☿", "♀", "♂", "♃", "♄"] as const;
+const BODIES = [
+  "sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn",
+] as const;
 
 /** Sign-distance → aspect. 1 and 5 apart yield no major aspect and draw nothing. */
 const ASPECTS: Record<number, { glyph: string; width: number; dash: number[] }> = {
-  0: { glyph: "☌", width: 1.3, dash: [] },      // conjunction
-  2: { glyph: "⚹", width: 0.7, dash: [2, 3] },  // sextile
-  3: { glyph: "□", width: 1.0, dash: [4, 3] },  // square
-  4: { glyph: "△", width: 1.0, dash: [] },      // trine
-  6: { glyph: "☍", width: 1.3, dash: [6, 3] },  // opposition
+  0: { glyph: "conjunct", width: 1.3, dash: [] },
+  2: { glyph: "sextile", width: 0.7, dash: [2, 3] },
+  3: { glyph: "square", width: 1.0, dash: [4, 3] },
+  4: { glyph: "trine", width: 1.0, dash: [] },
+  6: { glyph: "opposite", width: 1.3, dash: [6, 3] },
 };
+
+/**
+ * Inline SVG markup for a glyph. Inline rather than <img src> or an external <use>:
+ * currentColor only inherits within the same document, so a referenced file renders
+ * black and ignores the theme.
+ */
+function glyphSvg(name: string, px: number): string {
+  return (
+    `<svg viewBox="${GLYPH_VIEWBOX}" width="${px}" height="${px}" fill="none" ` +
+    `aria-hidden="true" style="display:inline-block;vertical-align:middle">` +
+    `${GLYPHS[name] ?? ""}</svg>`
+  );
+}
 
 /** Each figure is a set of sign offsets from an arbitrary root. */
 const FIGURES = [
@@ -125,12 +143,13 @@ export function SocialGraphCanvas() {
       };
     }
 
-    function makeLabel(text: string, muted: boolean): HTMLSpanElement {
+    function makeLabel(markup: string, muted: boolean): HTMLSpanElement {
       const el = document.createElement("span");
-      el.textContent = text;
+      // Trusted input: generated from the daoUI corpus at build time, never user data.
+      el.innerHTML = markup;
       el.className = muted
-        ? "absolute left-0 top-0 pointer-events-none font-mono text-[11px] text-tx-tertiary"
-        : "absolute left-0 top-0 pointer-events-none font-mono text-xs text-tx-secondary";
+        ? "absolute left-0 top-0 pointer-events-none inline-flex items-center gap-0.5 text-tx-tertiary"
+        : "absolute left-0 top-0 pointer-events-none inline-flex items-center gap-1 text-tx-secondary";
       el.style.opacity = "0";
       el.style.willChange = "transform, opacity";
       labelLayer.appendChild(el);
@@ -186,9 +205,13 @@ export function SocialGraphCanvas() {
           alpha: 0,
           hold: 0,
           nodeLabels: members.map((i) =>
-            makeLabel(`${state.nodes[i].body} ${SIGNS[state.nodes[i].sign]}`, false)
+            makeLabel(
+              glyphSvg(state.nodes[i].body, 15) +
+                glyphSvg(SIGNS[state.nodes[i].sign], 15),
+              false
+            )
           ),
-          edgeLabels: edges.map((e) => makeLabel(e.glyph, true)),
+          edgeLabels: edges.map((e) => makeLabel(glyphSvg(e.glyph, 13), true)),
         };
         return;
       }
@@ -290,8 +313,10 @@ export function SocialGraphCanvas() {
 
           const el = fig.edgeLabels[idx];
           el.style.opacity = String(fig.alpha * 0.75);
-          el.style.transform = `translate(${(a.x + b.x) / 2 - 6}px, ${
-            (a.y + b.y) / 2 - 9
+          // Centre the 13px glyph on the midpoint. The old -6/-9 was tuned for a text
+          // baseline; a square glyph wants half its size on both axes.
+          el.style.transform = `translate(${(a.x + b.x) / 2 - 6.5}px, ${
+            (a.y + b.y) / 2 - 6.5
           }px)`;
         });
 
