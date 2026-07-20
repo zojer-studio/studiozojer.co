@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Bind Tailwind's dark: variant to the .dark class that next-themes sets
+   (ThemeProvider attribute="class"). Without this, v4 defaults dark: to
+   prefers-color-scheme, so any dark: utility would follow the OS instead of the
+   site's own theme toggle. Nothing used dark: before this — declared so the
+   variant is correct for anything that does. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ============================================
    SEMANTIC COLOR TOKEN SYSTEM
    ============================================
